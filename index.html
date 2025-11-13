@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="icon" type="image/png" href="https://i.imgur.com/8Q3yYkL.png">
     <title>نتائج مدرستك الماسية | عرض النتائج</title>
     
@@ -10,10 +10,10 @@
         :root {
             /* درجات اللون الماسي/الفضي الداكن */
             --color-background: #1e1e1e;
-            --color-primary: #bdbdbd; /* ماسي أساسي */
-            --color-secondary: #4a4a4a; /* فضي ثانوي */
+            --color-primary: #bdbdbd; 
+            --color-secondary: #4a4a4a; 
             --color-text: #ffffff;
-            --color-accent: #00bcd4; /* لون التمييز */
+            --color-accent: #00bcd4;
             --color-success: #4CAF50;
             --color-fail: #F44336;
         }
@@ -27,155 +27,93 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 20px; /* زيادة التباعد حول المحتوى على الشاشات الكبيرة */
             direction: rtl;
             text-align: right;
         }
 
         .container {
             width: 90%;
-            max-width: 550px; /* زيادة بسيطة للعرض */
+            max-width: 550px;
             background-color: #2c2c2c;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 
                         0 0 15px var(--color-primary);
             animation: fadeIn 1s ease-out;
+            box-sizing: border-box; /* هام: يضمن أن البادينج لا يزيد العرض الكلي */
         }
+        
+        /* التنسيقات العامة (بدون تغيير كبير) */
+        .header { text-align: center; margin-bottom: 30px; }
+        .header img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--color-primary); box-shadow: 0 0 15px var(--color-primary); margin-bottom: 15px; }
+        .header h1 { color: var(--color-primary); font-size: 2.2em; margin: 5px 0 0; border-bottom: 2px solid var(--color-secondary); padding-bottom: 10px; }
+        .form-group input { width: 100%; padding: 12px; border: none; border-radius: 8px; background-color: var(--color-secondary); color: var(--color-text); font-size: 1.1em; box-sizing: border-box; margin-top: 10px; }
+        .btn-search { width: 100%; padding: 15px; border: none; border-radius: 8px; background-color: var(--color-primary); color: #1e1e1e; font-size: 1.3em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background-color 0.3s, transform 0.2s; }
+        .btn-search:hover { background-color: #ffffff; transform: translateY(-2px); }
+        .result-box { margin-top: 30px; padding: 25px; border-radius: 12px; border: 2px solid var(--color-primary); background-color: #383838; animation: slideIn 0.6s ease-out; box-shadow: 0 0 20px rgba(189, 189, 189, 0.3); }
+        .result-box h2 { color: var(--color-accent); text-align: center; margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--color-secondary); }
+        .result-box p { margin: 15px 0; font-size: 1.1em; }
+        .result-box .name-id { font-weight: bold; color: var(--color-primary); }
+        .grade-display { text-align: center; margin: 25px 0; padding: 20px; background-color: var(--color-secondary); border-radius: 10px; border-left: 5px solid var(--color-accent); }
+        .grade-display span { display: block; font-size: 1.2em; color: var(--color-primary); }
+        .grade-number { font-size: 3em; font-weight: bold; color: var(--color-text); text-shadow: 0 0 10px var(--color-accent); margin-top: 5px; }
+        .final-status { font-size: 1.6em; text-align: center; padding: 12px; border-radius: 8px; font-weight: bolder; margin-top: 20px; }
+        .success { background-color: var(--color-success); color: var(--color-background); }
+        .fail { background-color: var(--color-fail); color: var(--color-text); }
+        .hidden { display: none; }
 
+
+        /* ---------------------------------------------------- */
+        /* 📱 استعلامات الوسائط لتحسين العرض على الهواتف المحمولة */
+        /* ---------------------------------------------------- */
+        @media (max-width: 600px) {
+            /* على الشاشات الأصغر من 600 بكسل (الهواتف) */
+            
+            body {
+                padding: 10px; /* تقليل البادينج الخارجي */
+            }
+
+            .container {
+                padding: 20px; /* تقليل البادينج الداخلي للحصول على مساحة أكبر */
+                border-radius: 0; /* يمكن إزالة الحواف المنحنية في الهواتف لملء الشاشة بشكل أفضل */
+                width: 100%; /* اجعل الحاوية تملأ عرض الشاشة بالكامل */
+            }
+
+            .header img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .header h1 {
+                font-size: 1.8em; /* تصغير عنوان كبير ليناسب الشاشة */
+            }
+
+            .btn-search {
+                font-size: 1.1em; /* تصغير حجم خط زر البحث */
+                padding: 12px;
+            }
+
+            .result-box {
+                padding: 15px; /* تصغير بادينج صندوق النتيجة */
+            }
+            
+            .grade-number {
+                font-size: 2.5em; /* تصغير حجم خط المعدل */
+            }
+
+            .final-status {
+                font-size: 1.4em; /* تصغير حجم خط النتيجة النهائية */
+            }
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(-10px); } /* تقليل حركة البداية */
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid var(--color-primary);
-            box-shadow: 0 0 15px var(--color-primary);
-            margin-bottom: 15px;
-        }
-
-        .header h1 {
-            color: var(--color-primary);
-            font-size: 2.2em;
-            margin: 5px 0 0;
-            border-bottom: 2px solid var(--color-secondary);
-            padding-bottom: 10px;
-        }
-        
-        /* تصميم حقول البحث */
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background-color: var(--color-secondary);
-            color: var(--color-text);
-            font-size: 1.1em;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .btn-search {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            background-color: var(--color-primary);
-            color: #1e1e1e;
-            font-size: 1.3em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .btn-search:hover {
-            background-color: #ffffff;
-            transform: translateY(-2px);
-        }
-        
-        /* تصميم صندوق النتيجة القوي */
-        .result-box {
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 12px;
-            border: 2px solid var(--color-primary);
-            background-color: #383838;
-            animation: slideIn 0.6s ease-out;
-            box-shadow: 0 0 20px rgba(189, 189, 189, 0.3); /* ظل ماسي */
-        }
-
-        .result-box h2 {
-            color: var(--color-accent);
-            text-align: center;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--color-secondary);
-        }
-
-        .result-box p {
-            margin: 15px 0;
-            font-size: 1.1em;
-        }
-
-        .result-box .name-id {
-            font-weight: bold;
-            color: var(--color-primary);
-        }
-
-        /* تصميم عرض الدرجة (المعدل) */
-        .grade-display {
-            text-align: center;
-            margin: 25px 0;
-            padding: 20px;
-            background-color: var(--color-secondary);
-            border-radius: 10px;
-            border-left: 5px solid var(--color-accent);
-        }
-
-        .grade-display span {
-            display: block;
-            font-size: 1.2em;
-            color: var(--color-primary);
-        }
-
-        .grade-number {
-            font-size: 3em; /* حجم كبير للدرجة */
-            font-weight: bold;
-            color: var(--color-text);
-            text-shadow: 0 0 10px var(--color-accent);
-            margin-top: 5px;
-        }
-        
-        .final-status {
-            font-size: 1.6em;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bolder;
-            margin-top: 20px;
-        }
-
-        .success {
-            background-color: var(--color-success);
-            color: var(--color-background);
-        }
-
-        .fail {
-            background-color: var(--color-fail);
-            color: var(--color-text);
-        }
-
-        .hidden {
-            display: none;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -184,8 +122,8 @@
     <div class="container">
         <div class="header">
             <img src="https://b.top4top.io/p_3604vtgzd1.jpg" alt="شعار المدرسة">
-            <h1>اعلان نتائج الدوره الالكترونيه </h1>
-            <p>الاستاذ حيدر علي الطائي | أدخل رقمك أو اسمك لعرض النتيجة</p>
+            <h1>اعلان نتائج الدوره الاكترونيه</h1>
+            <p>الاستاذ حيدر علي الطائي| أدخل رقمك أو اسمك لعرض النتيجة</p>
         </div>
 
         <div class="form-group">
@@ -214,10 +152,9 @@
     </div>
 
     <script>
-        // 🚨 البيانات الداخلية: أضفنا "المعدل" لكل طالب
         const studentsData = [
-            { id: "1001", name: "قاسم عباس خماس", grade: "92.5", result: "ناجح", isSuccess: true },
-            { id: "1002", name: "فاطمة حامد يوسف", grade: "48.9", result: "راسب", isSuccess: false },
+            { id: "1001", name: "محمد أحمد علي", grade: "92.5", result: "ناجح", isSuccess: true },
+            { id: "1002", name: "قاسم عباس خماس", grade: "48.9", result: "راسب", isSuccess: false },
             { id: "1003", name: "علياء سامي جاسم", grade: "85.0", result: "ناجح", isSuccess: true },
             { id: "1004", name: "يوسف خالد ماجد", grade: "77.1", result: "ناجح", isSuccess: true }
         ];
@@ -227,17 +164,14 @@
             const resultBox = document.getElementById('resultOutput');
             const errorBox = document.getElementById('errorOutput');
             
-            // إخفاء النتائج السابقة
             resultBox.classList.add('hidden');
             errorBox.classList.add('hidden');
 
-            // وظيفة البحث: يبحث بالرقم الامتحاني أو الاسم الثلاثي
             const student = studentsData.find(s => 
                 s.id === input || s.name.toLowerCase() === input.toLowerCase()
             );
 
             if (student) {
-                // عرض النتيجة
                 document.getElementById('studentName').textContent = student.name;
                 document.getElementById('studentID').textContent = student.id;
                 document.getElementById('studentGrade').textContent = student.grade;
@@ -245,7 +179,6 @@
                 const finalStatusDiv = document.getElementById('finalStatus');
                 finalStatusDiv.textContent = `حالة الطالب: ${student.result}`;
 
-                // تحديد لون حالة النجاح/الرسوب
                 finalStatusDiv.classList.remove('success', 'fail');
                 if (student.isSuccess) {
                     finalStatusDiv.classList.add('success');
@@ -256,7 +189,6 @@
                 resultBox.classList.remove('hidden');
 
             } else {
-                // عرض رسالة الخطأ
                 errorBox.classList.remove('hidden');
             }
         }
