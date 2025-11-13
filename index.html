@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/8Q3yYkL.png">
+    <title>نتائج مدرستك الماسية | عرض النتائج</title>
+    
+    <style>
+        :root {
+            /* درجات اللون الماسي/الفضي الداكن */
+            --color-background: #1e1e1e; /* خلفية داكنة قوية */
+            --color-primary: #bdbdbd; /* لون ماسي أساسي */
+            --color-secondary: #4a4a4a; /* لون فضي ثانوي */
+            --color-text: #ffffff;
+            --color-accent: #00bcd4; /* لون التمييز */
+            --color-success: #4CAF50;
+            --color-fail: #F44336;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* من اليمين لليسار */
+            text-align: right;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #2c2c2c;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        0 0 10px var(--color-primary); /* ظل ماسي خفيف */
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--color-primary);
+            box-shadow: 0 0 15px var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            color: var(--color-primary);
+            font-size: 2em;
+            margin: 5px 0 0;
+            border-bottom: 2px solid var(--color-secondary);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--color-accent);
+        }
+
+        .btn-search {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--color-primary);
+            color: #1e1e1e; /* نص داكن على اللون الفضي */
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--color-secondary);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-box h2 {
+            margin-top: 0;
+            color: var(--color-accent);
+            text-align: center;
+            border-bottom: 1px solid var(--color-secondary);
+            padding-bottom: 10px;
+        }
+
+        .result-box p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .result-box .name {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .result-box .final-result {
+            font-size: 1.5em;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bolder;
+            margin-top: 15px;
+        }
+
+        .result-box .success {
+            background-color: var(--color-success);
+            color: var(--color-background);
+        }
+
+        .result-box .fail {
+            background-color: var(--color-fail);
+            color: var(--color-text);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="https://b.top4top.io/p_3604vtgzd1.jpg" alt="شعار المدرسة">
+            <h1>نظام إعلان النتائج الماسي</h1>
+            <p>مدرسة [ | العام الدراسي [2024/2025]</p>
+        </div>
+
+        <div class="form-group">
+            <label for="examNumber">الرقم الامتحاني:</label>
+            <input type="text" id="examNumber" placeholder="أدخل رقمك الامتحاني هنا" required>
+        </div>
+
+        <button class="btn-search" onclick="searchResult()">عرض النتيجة</button>
+
+        <div id="resultOutput" class="result-box hidden">
+            <h2>نتيجة الطالب</h2>
+            <p><span class="name">الاسم:</span> <span id="studentName"></span></p>
+            <p><span class="name">الرقم الامتحاني:</span> <span id="studentID"></span></p>
+            <div id="finalResult" class="final-result"></div>
+            </div>
+
+        <div id="errorOutput" class="result-box hidden">
+            <h2>خطأ</h2>
+            <p>الرقم الامتحاني الذي أدخلته غير صحيح أو غير موجود. يرجى التأكد من الرقم والمحاولة مرة أخرى.</p>
+        </div>
+    </div>
+
+    <script>
+        // 🚨 انتبه: هذه البيانات هي لغرض التوضيح فقط.
+        // لنظام حقيقي بـ 1000 طالب، يجب استخدام قاعدة بيانات خارجية (PHP/SQL).
+        const studentsData = [
+            { id: "1001", name: "محمد أحمد علي", result: "ناجح", isSuccess: true },
+            { id: "1002", name: "فاطمة حامد يوسف", result: "راسب", isSuccess: false },
+            { id: "1003", name: "علياء سامي جاسم", result: "ناجح", isSuccess: true },
+            // ... يمكنك إضافة 1000 طالب هنا (لكن لا ينصح به لـ 1000 طالب)
+            { id: "1004", name: "يوسف خالد ماجد", result: "ناجح", isSuccess: true }
+        ];
+
+        function searchResult() {
+            const inputID = document.getElementById('examNumber').value.trim();
+            const resultBox = document.getElementById('resultOutput');
+            const errorBox = document.getElementById('errorOutput');
+            
+            // إخفاء النتائج السابقة
+            resultBox.classList.add('hidden');
+            errorBox.classList.add('hidden');
+
+            // البحث عن الطالب في البيانات الداخلية
+            const student = studentsData.find(s => s.id === inputID);
+
+            if (student) {
+                // عرض النتيجة
+                document.getElementById('studentName').textContent = student.name;
+                document.getElementById('studentID').textContent = student.id;
+                
+                const finalResultDiv = document.getElementById('finalResult');
+                finalResultDiv.textContent = `النتيجة النهائية: ${student.result}`;
+
+                // تحديد لون النتيجة
+                finalResultDiv.classList.remove('success', 'fail');
+                if (student.isSuccess) {
+                    finalResultDiv.classList.add('success');
+                } else {
+                    finalResultDiv.classList.add('fail');
+                }
+
+                resultBox.classList.remove('hidden');
+
+            } else {
+                // عرض رسالة الخطأ
+                errorBox.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
