@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>متجر قاسم عباس</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ======== إعدادات أساسية وتصميم ليلي (Dark Mode) ======== */
+        /* ======== إعدادات التصميم (أقوى) ======== */
         :root {
-            --primary-color: #6a11cb; /* لون بنفسجي جذاب */
-            --secondary-color: #2575fc; /* لون أزرق مكمل */
-            --bg-color: #121212;         /* خلفية ليلية */
-            --card-color: #1e1e1e;       /* لون البطاقات */
-            --text-color: #f0f0f0;       /* لون النص الأساسي */
-            --text-secondary: #aaaaaa;   /* لون النص الثانوي */
+            --primary-color: #007BFF; /* أزرق ساطع */
+            --secondary-color: #00C6FF; /* أزرق سماوي */
+            --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            --bg-color: #0d0d0d;         /* أسود فخم */
+            --card-color: #1a1a1a;       /* لون البطاقات (أغمق) */
+            --text-color: #ffffff;       /* لون النص الأساسي */
+            --text-secondary: #b3b3b3;   /* لون النص الثانوي */
         }
 
         * {
@@ -26,187 +29,209 @@
         }
 
         body {
-            font-family: 'Cairo', sans-serif; /* استخدام الخط العربي */
+            font-family: 'Cairo', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
+            /* يجعل التمرير سلس */
+            scroll-behavior: smooth;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px; /* هام للموبايل */
         }
 
         /* ======== الهيدر (اسم المتجر) ======== */
         header {
+            padding: 20px 0;
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid var(--card-color);
+            background-color: var(--card-color);
+            border-bottom: 2px solid var(--primary-color);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2rem; /* مناسب للموبايل */
+            font-weight: 900;
+            color: var(--text-color);
         }
 
         /* ======== قسم التطبيق الرئيسي (Hero) ======== */
         .hero {
+            padding: 40px 0;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* الترتيب العمودي للموبايل */
             align-items: center;
-            text-align: center;
-            padding: 60px 20px;
+            gap: 30px;
         }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
+        /* 1. إطار الموبايل (Mockup) */
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background-color: #111;
+            border: 10px solid #222;
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .phone-mockup-screen {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
             border-radius: 25px;
-            background-color: var(--card-color);
-            margin-bottom: 20px;
-            /* استبدل هذا الرابط بصورة الأيقونة الخاصة بك */
-            background-image: url('https://via.placeholder.com/120/333/fff?text=ICON');
-            background-size: cover;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* لإخفاء أطراف الصورة */
         }
 
-        .hero h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
+        .phone-mockup-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* لجعل الصورة تملأ الشاشة */
+        }
+
+        /* 2. محتوى التطبيق (النص والزر) */
+        .app-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .app-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
             margin-bottom: 10px;
         }
 
-        .hero p {
+        .app-content p {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
             margin-bottom: 30px;
         }
 
-        /* ======== زر التحميل (الأهم) ======== */
+        /* ======== زر التحميل (مع أنيميشن) ======== */
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient);
             color: #ffffff;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 50px; /* تصميم دائري الأطراف */
+            border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
+            /* الأنيميشن: النبض */
+            animation: pulse 2s infinite ease-in-out;
         }
 
         .cta-button:hover {
-            transform: scale(1.05); /* تأثير عند مرور الماوس */
-            box-shadow: 0 8px 25px rgba(37, 117, 252, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 198, 255, 0.5);
+            animation: none; /* إيقاف النبض عند المرور */
         }
 
-        /* ======== قسم المميزات ======== */
-        .features {
-            padding: 60px 0;
-        }
-        
-        .features h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 40px;
+        /* تعريف أنيميشن النبض */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-item {
+        /* ======== قسم معلومات التطبيق ======== */
+        .app-info {
+            padding: 40px 0;
             background-color: var(--card-color);
-            padding: 30px;
+            margin: 40px 0;
             border-radius: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* عمودين */
+            gap: 20px;
             text-align: center;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.3s ease;
         }
 
-        .feature-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-item .icon {
-            font-size: 2.5rem; /* حجم الأيقونة (استخدم إيموجي هنا) */
-            margin-bottom: 15px;
-        }
-
-        .feature-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-item p {
-            color: var(--text-secondary);
+        .info-item h4 {
             font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
         }
 
-        /* ======== قسم لقطات الشاشة ======== */
+        .info-item p {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* ======== قسم لقطات الشاشة (مناسب للموبايل) ======== */
         .screenshots {
             padding: 40px 0;
             text-align: center;
         }
-        
+
         .screenshots h3 {
             font-size: 1.8rem;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .gallery {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto; /* يجعل الصور قابلة للتمرير أفقياً */
-            padding: 20px;
-            /* تصميم لجعل التمرير سلس */
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
+            padding: 20px 10px;
+            /* لجعل التمرير يلتصق بالصورة (اختياري لكنه رائع) */
+            scroll-snap-type: x mandatory;
         }
 
         .gallery img {
-            width: 200px;
+            width: 220px;
             height: auto;
             border-radius: 12px;
-            border: 2px solid var(--card-color);
-            transition: transform 0.3s ease;
+            border: 3px solid var(--card-color);
+            scroll-snap-align: center; /* لجعل الصورة في المنتصف عند التمرير */
         }
 
-        .gallery img:hover {
-            transform: scale(1.03);
-            border-color: var(--primary-color);
-        }
-
-        /* ======== الفوتر (النهاية) ======== */
+        /* ======== الفوتر ======== */
         footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 40px;
             border-top: 1px solid var(--card-color);
             color: var(--text-secondary);
-            font-size: 0.9rem;
         }
 
-        /* ======== التجاوب مع شاشات الموبايل ======== */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
+        /* ======== ⭐️ التجاوب مع الشاشات الأكبر (الكمبيوتر) ⭐️ ======== */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 40px;
             }
 
-            .hero h2 {
-                font-size: 1.8rem;
+            .hero {
+                /* تحويله إلى عرض أفقي */
+                flex-direction: row-reverse; /* الـ Mockup على اليسار */
+                justify-content: space-between;
+                padding: 60px 0;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .app-content {
+                text-align: right; /* محاذاة لليمين */
+                width: 50%;
+            }
+
+            .phone-mockup {
+                width: 320px;
+                height: 640px;
+            }
+
+            .app-content h2 {
+                font-size: 3rem;
+            }
+            
+            .info-grid {
+                /* 4 أعمدة على الشاشة الكبيرة */
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -214,66 +239,69 @@
 <body>
 
     <header>
-        <div class="container">
-            <h1>متجر قاسم عباس</h1>
-        </div>
+        <h1>متجر قاسم عباس</h1>
     </header>
 
-    <main class="container">
+    <div class="container">
+        <main>
 
-        <section class="hero">
-            <div class="app-icon" style="background-image: url('https://via.placeholder.com/120/6a11cb/fff?text=App');"></div>
-            
-            <h2>اسم تطبيقك الرائع</h2>
-            <p>
-                هنا تضع وصفاً قصيراً وجذاباً لتطبيقك. اشرح ما يفعله التطبيق ولماذا يجب على المستخدم تحميله فوراً.
-            </p>
-
-            <a href="#" class="cta-button">
-                تحميل التطبيق الآن (v1.0)
-            </a>
-        </section>
-
-        <section class="features">
-            <h3>مميزات التطبيق</h3>
-            <div class="features-grid">
+            <section class="hero">
                 
-                <div class="feature-item">
-                    <div class="icon">⚡️</div> <h4>سرعة فائقة</h4>
-                    <p>يعمل التطبيق بأداء لا مثيل له وبدون أي تأخير.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="icon">🛡️</div>
-                    <h4>أمان تام</h4>
-                    <p>بياناتك محمية بالكامل معنا بأحدث تقنيات التشفير.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="icon">💡</div>
-                    <h4>تصميم عصري</h4>
-                    <p>واجهة مستخدم سهلة وجميلة مصممة خصيصاً لراحتك.</p>
+                <div class="phone-mockup">
+                    <div class="phone-mockup-screen">
+                        <img src="https://via.placeholder.com/300x600/111/fff?text=Screenshot+Here" alt="لقطة شاشة للتطبيق">
+                    </div>
                 </div>
 
-            </div>
-        </section>
+                <div class="app-content">
+                    <h2>منصة الاستاذ حيدر علي الطائي</h2>
+                    <p>
+                       ملاحظة لمستخدمي أندرويد: قد تظهر لك رسالة أمنية، يرجى الضغط على "السماح" أو "تثبيت على أي حال" لإتمام التثبيت .
+                    </p>
 
-        <section class="screenshots">
-            <h3>لقطات من داخل التطبيق</h3>
-            <div class="gallery">
-                <img src="https://via.placeholder.com/200x400/1e1e1e/fff?text=Screenshot+1" alt="لقطة شاشة 1">
-                <img src="https://via.placeholder.com/200x400/1e1e1e/fff?text=Screenshot+2" alt="لقطة شاشة 2">
-                <img src="https://via.placeholder.com/200x400/1e1e1e/fff?text=Screenshot+3" alt="لقطة شاشة 3">
-                <img src="https://via.placeholder.com/200x400/1e1e1e/fff?text=Screenshot+4" alt="لقطة شاشة 4">
-            </div>
-        </section>
+                    <a href="#" class="cta-button">
+                        تحميل الإصدار الأخير
+                    </a>
+                </div>
 
-    </main>
+            </section>
+
+            <section class="app-info">
+                <div class="info-grid container">
+                    <div class="info-item">
+                        <h4>الإصدار الحالي</h4>
+                        <p>v1.0.0</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>الحجم</h4>
+                        <p>25 MB</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>النظام</h4>
+                        <p>Android 5.0+</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>آخر تحديث</h4>
+                        <p>15-11-2025</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="screenshots">
+                <h3>شاهد التطبيق من الداخل</h3>
+                <div class="gallery">
+                    <img src="https://via.placeholder.com/220x440/1a1a1a/fff?text=Screen+1" alt="لقطة شاشة 1">
+                    <img src="https://via.placeholder.com/220x440/1a1a1a/fff?text=Screen+2" alt="لقطة شاشة 2">
+                    <img src="https://via.placeholder.com/220x440/1a1a1a/fff?text=Screen+3" alt="لقطة شاشة 3">
+                    <img src="https://via.placeholder.com/220x440/1a1a1a/fff?text=Screen+4" alt="لقطة شاشة 4">
+                </div>
+            </section>
+
+        </main>
+    </div>
 
     <footer>
-        <div class="container">
-            <p>كل الحقوق محفوظة © متجر قاسم عباس 2025</p>
-        </div>
+        <p>جميع الحقوق محفوظة © متجر قاسم عباس 2025</p>
     </footer>
 
 </body>
