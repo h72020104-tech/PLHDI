@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر قاسم عباس </title>
+    <title>منصة الاستاذ حيدر علي الطائي - متجر قاسم عباس</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* ======== إعدادات الألوان والخطوط الأساسية ======== */
+        /* ======== إعدادات الألوان والخطوط الأساسية (بقي كما هو) ======== */
         :root {
-            --primary-color: #0d6efd; /* أزرق عميق */
-            --secondary-color: #6610f2; /* بنفسجي غامق */
-            --accent-color: #fd7e14; /* برتقالي ساطع */
-            --bg-dark: #0a0a0a; /* خلفية سوداء عميقة */
-            --card-dark: #1c1c1c; /* لون البطاقات */
-            --text-light: #f0f0f0; /* نص فاتح */
-            --text-muted: #b0b0b0; /* نص ثانوي */
+            --primary-color: #0d6efd; 
+            --secondary-color: #6610f2;
+            --accent-color: #fd7e14; 
+            --bg-dark: #0a0a0a; 
+            --card-dark: #1c1c1c; 
+            --text-light: #f0f0f0;
+            --text-muted: #b0b0b0;
             --shadow-strong: 0 15px 30px rgba(0, 0, 0, 0.4);
             --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.2);
             --gradient-main: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --gradient-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* خلفية متحركة */
+            --gradient-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); 
         }
 
         * {
@@ -34,15 +33,15 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: var(--bg-dark); /* بدلاً من تدرج متحرك */
+            background: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
             scroll-behavior: smooth;
-            overflow-x: hidden; /* لمنع التمرير الأفقي غير المرغوب فيه */
+            overflow-x: hidden;
             position: relative;
         }
 
-        /* خلفية متفاعلة (تدرج لوني كبير يتحرك) */
+        /* خلفية متفاعلة (بقي كما هو) */
         body::before {
             content: '';
             position: fixed;
@@ -54,7 +53,7 @@
             background-size: 200% 200%;
             animation: moveGradient 15s ease infinite;
             z-index: -1;
-            opacity: 0.3; /* شفافية بسيطة */
+            opacity: 0.3;
         }
 
         @keyframes moveGradient {
@@ -69,10 +68,10 @@
             padding: 0 15px;
         }
 
-        /* ======== الهيدر ======== */
+        /* ======== الهيدر (بقي كما هو) ======== */
         header {
-            background-color: rgba(28, 28, 28, 0.8); /* خلفية شبه شفافة */
-            backdrop-filter: blur(10px); /* تأثير الضبابية */
+            background-color: rgba(28, 28, 28, 0.8);
+            backdrop-filter: blur(10px);
             padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid rgba(var(--primary-color), 0.3);
@@ -83,7 +82,7 @@
         }
 
         header h1 {
-            font-family: 'Montserrat', sans-serif; /* خط مختلف للعنوان */
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.2rem;
             font-weight: 900;
             background: var(--gradient-main);
@@ -100,45 +99,36 @@
             gap: 40px;
             text-align: center;
             position: relative;
-            z-index: 1; /* للتأكد من أنها فوق الخلفية المتحركة */
+            z-index: 1;
         }
 
-        /* إطار الموبايل بتصميم 3D */
-        .phone-mockup {
-            width: 300px; /* حجم مناسب للموبايل */
-            height: 600px;
-            background: var(--bg-dark);
-            border: 15px solid var(--card-dark);
-            border-radius: 45px;
-            padding: 18px;
+        /* ======================================= */
+        /* التعديل: إطار عرض قوي وثلاثي الأبعاد (بديل الموبايل) */
+        /* ======================================= */
+        .display-panel-3d {
+            width: 100%; /* عرض كامل على الموبايل */
+            max-width: 450px; /* حجم معقول للعرض القوي */
+            background-color: var(--card-dark);
+            border: 4px solid var(--accent-color); /* إطار بلون جذاب */
+            border-radius: 15px;
+            overflow: hidden;
             box-shadow: var(--shadow-strong);
             position: relative;
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg); /* تأثير 3D خفيف */
+            /* تأثير 3D أقوى ومهيب */
+            transform: perspective(1200px) rotateX(10deg) rotateY(0deg); 
             transition: transform 0.5s ease;
-            margin: 0 auto;
-        }
-        .phone-mockup:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
         }
 
-        .phone-mockup-screen {
-            width: 100%;
-            height: 100%;
-            background-color: var(--card-dark);
-            border-radius: 25px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            color: var(--text-muted);
+        .display-panel-3d:hover {
+            transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(var(--primary-color), 0.5);
         }
 
-        .phone-mockup-screen img {
+        .display-panel-3d img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; /* للحفاظ على نسبة العرض والارتفاع */
             display: block;
+            border-radius: 10px;
         }
 
         .app-content h2 {
@@ -154,8 +144,8 @@
             max-width: 600px;
             margin: 0 auto 35px;
         }
-
-        /* ======== زر التحميل (مع أنيميشن ونبض) ======== */
+        
+        /* ======== زر التحميل (بقي كما هو) ======== */
         .cta-button {
             display: inline-flex;
             align-items: center;
@@ -167,7 +157,7 @@
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* انتقال سلس */
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             box-shadow: var(--shadow-strong);
             animation: pulse 2s infinite ease-in-out;
         }
@@ -188,7 +178,7 @@
             100% { transform: scale(1); box-shadow: var(--shadow-strong); }
         }
 
-        /* ======== قسم معلومات التطبيق ======== */
+        /* ======== الأقسام الأخرى (بقت كما هي) ======== */
         .app-info {
             padding: 40px 0;
             margin: 50px 0;
@@ -200,7 +190,7 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* عمودين للموبايل */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             padding: 0 20px;
         }
@@ -229,7 +219,6 @@
             color: var(--accent-color);
         }
 
-        /* ======== قسم لقطات الشاشة (معرض صور ثلاثي الأبعاد) ======== */
         .screenshots {
             padding: 40px 0 80px;
             text-align: center;
@@ -242,12 +231,12 @@
 
         .gallery {
             display: flex;
-            gap: 25px; /* مسافة أكبر */
+            gap: 25px;
             overflow-x: auto;
-            padding: 20px 15px; /* هام للتمرير على الموبايل */
+            padding: 20px 15px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* إخفاء شريط التمرير */
+            scrollbar-width: none;
             margin-bottom: 30px;
         }
         .gallery::-webkit-scrollbar {
@@ -255,8 +244,8 @@
         }
 
         .gallery img {
-            min-width: 250px; /* عرض ثابت لكل صورة */
-            height: 500px; /* ارتفاع ثابت */
+            min-width: 250px;
+            height: 500px;
             object-fit: cover;
             border-radius: 20px;
             border: 4px solid var(--card-dark);
@@ -264,24 +253,24 @@
             cursor: pointer;
             transition: transform 0.4s ease, border-color 0.4s ease;
             scroll-snap-align: center;
-            transform: rotateY(5deg) scale(0.95); /* تأثير 3D افتراضي */
+            transform: rotateY(5deg) scale(0.95);
         }
         .gallery img:hover {
-            transform: rotateY(0deg) scale(1.05); /* إبراز عند المرور */
+            transform: rotateY(0deg) scale(1.05);
             border-color: var(--accent-color);
         }
 
-        /* ======== Lightbox (عارض الصور المنبثق) ======== */
+        /* ======== Lightbox (عارض الصور المنبثق) - بقي كما هو ======== */
         .lightbox {
-            display: none; /* مخفي افتراضياً */
+            display: none;
             position: fixed;
-            z-index: 2000; /* فوق كل شيء */
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9); /* خلفية سوداء شفافة جداً */
+            background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
@@ -324,7 +313,7 @@
             to { transform: scale(1); }
         }
 
-        /* ======== الفوتر ======== */
+        /* ======== الفوتر (بقي كما هو) ======== */
         footer {
             background-color: var(--card-dark);
             padding: 30px 20px;
@@ -342,7 +331,7 @@
             }
 
             .hero {
-                flex-direction: row-reverse; /* الـ Mockup على اليسار */
+                flex-direction: row-reverse;
                 justify-content: space-between;
                 padding: 80px 0;
                 text-align: right;
@@ -356,14 +345,16 @@
                 font-size: 3.5rem;
             }
 
-            .phone-mockup {
-                width: 350px;
-                height: 700px;
-                transform: perspective(1000px) rotateY(-10deg) rotateX(7deg); /* تأثير 3D أقوى */
+            /* إطار العرض على شاشات الكمبيوتر */
+            .display-panel-3d {
+                width: 45%;
+                max-width: 500px;
+                /* تأثير 3D أقوى ومناسب للشاشة الكبيرة */
+                transform: perspective(1200px) rotateY(-15deg) rotateX(10deg); 
             }
 
             .info-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 أعمدة للشاشات الكبيرة */
+                grid-template-columns: repeat(4, 1fr);
             }
 
             .gallery img {
@@ -386,16 +377,14 @@
 
         <section class="hero">
             
-            <div class="phone-mockup">
-                <div class="phone-mockup-screen">
-                    <img id="mainScreenshot" src="https://up6.cc/2025/10/176336413134331.png" alt="لقطة شاشة رئيسية للتطبيق">
-                </div>
+            <div class="display-panel-3d">
+                <img id="mainScreenshot" src="https://up6.cc/2025/10/176336413134331.png" alt="لقطة شاشة رئيسية للتطبيق">
             </div>
 
             <div class="app-content">
                 <h2>منصة الاستاذ حيدر علي الطائي</h2>
                 <p>
-                  اكتشف تجربة جديدة كلياً مع تطبيقنا المبتكر. مصمم خصيصاً للدروس الاكترونيه للغه الانكليزيه السادس العلمي 
+                    اكتشف تجربة جديدة كلياً مع تطبيقنا المبتكر. مصمم خصيصاً للدروس الاكترونيه للغه الانكليزيه السادس العلمي 
                 </p>
 
                 <a href="#" class="cta-button">
@@ -452,7 +441,7 @@
     </div>
 
     <script>
-        // ======== JavaScript لتشغيل الـ Lightbox (عارض الصور) ========
+        // ======== JavaScript لتشغيل الـ Lightbox (عارض الصور) - بقي كما هو ========
         document.addEventListener('DOMContentLoaded', function() {
             var galleryImages = document.querySelectorAll('.gallery img');
             var lightbox = document.getElementById('myLightbox');
@@ -461,7 +450,7 @@
 
             galleryImages.forEach(function(img) {
                 img.onclick = function(){
-                    lightbox.style.display = "flex"; // استخدام flexbox للمحاذاة
+                    lightbox.style.display = "flex";
                     lightboxImg.src = this.src;
                 }
             });
@@ -471,7 +460,6 @@
             }
 
             lightbox.onclick = function(event) {
-                // إغلاق عند النقر خارج الصورة
                 if (event.target == lightbox) {
                     lightbox.style.display = "none";
                 }
