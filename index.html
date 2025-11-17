@@ -3,468 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الاستاذ حيدر علي الطائي - متجر قاسم عباس</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>قائمة أسماء شعبة (A4 Print Ready)</title>
     <style>
-        /* ======== إعدادات الألوان والخطوط الأساسية (بقي كما هو) ======== */
-        :root {
-            --primary-color: #0d6efd; 
-            --secondary-color: #6610f2;
-            --accent-color: #fd7e14; 
-            --bg-dark: #0a0a0a; 
-            --card-dark: #1c1c1c; 
-            --text-light: #f0f0f0;
-            --text-muted: #b0b0b0;
-            --shadow-strong: 0 15px 30px rgba(0, 0, 0, 0.4);
-            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.2);
-            --gradient-main: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --gradient-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); 
-        }
-
-        * {
+        /* 1. تنسيقات عامة وخطوط */
+        body {
+            font-family: 'Arial', Tahoma, sans-serif; /* خط بسيط وواضح للطباعة */
+            background-color: #f4f4f9;
+            color: #333;
             margin: 0;
             padding: 0;
+            direction: rtl; /* لغة عربية */
+        }
+
+        /* 2. حاوية الصفحة الرئيسية */
+        .page-container {
+            max-width: 210mm; /* عرض A4 تقريباً */
+            min-height: 297mm; /* ارتفاع A4 تقريباً */
+            margin: 20px auto;
+            padding: 20mm; /* هامش داخلي كبير لراحة الطباعة */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* خلفية متفاعلة (بقي كما هو) */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: var(--gradient-bg);
-            background-size: 200% 200%;
-            animation: moveGradient 15s ease infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        @keyframes moveGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* ======== الهيدر (بقي كما هو) ======== */
-        header {
-            background-color: rgba(28, 28, 28, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
+        /* 3. العنوان والتفاصيل */
+        .header {
             text-align: center;
-            border-bottom: 1px solid rgba(var(--primary-color), 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-soft);
-        }
-
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* ======== قسم التطبيق الرئيسي (Hero Section) ======== */
-        .hero {
-            padding: 60px 0 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ======================================= */
-        /* التعديل: إطار عرض قوي وثلاثي الأبعاد (بديل الموبايل) */
-        /* ======================================= */
-        .display-panel-3d {
-            width: 100%; /* عرض كامل على الموبايل */
-            max-width: 450px; /* حجم معقول للعرض القوي */
-            background-color: var(--card-dark);
-            border: 4px solid var(--accent-color); /* إطار بلون جذاب */
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow-strong);
-            position: relative;
-            /* تأثير 3D أقوى ومهيب */
-            transform: perspective(1200px) rotateX(10deg) rotateY(0deg); 
-            transition: transform 0.5s ease;
-        }
-
-        .display-panel-3d:hover {
-            transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1.02);
-            box-shadow: 0 25px 50px rgba(var(--primary-color), 0.5);
-        }
-
-        .display-panel-3d img {
-            width: 100%;
-            height: auto; /* للحفاظ على نسبة العرض والارتفاع */
-            display: block;
-            border-radius: 10px;
-        }
-
-        .app-content h2 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .app-content p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 35px;
-        }
-        
-        /* ======== زر التحميل (بقي كما هو) ======== */
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gradient-main);
-            color: #ffffff;
-            padding: 18px 40px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: var(--shadow-strong);
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        .cta-button i {
-            font-size: 1.4rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(var(--primary-color), 0.6);
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: var(--shadow-strong); }
-            50% { transform: scale(1.03); box-shadow: 0 18px 35px rgba(var(--primary-color), 0.5); }
-            100% { transform: scale(1); box-shadow: var(--shadow-strong); }
-        }
-
-        /* ======== الأقسام الأخرى (بقت كما هي) ======== */
-        .app-info {
-            padding: 40px 0;
-            margin: 50px 0;
-            background-color: var(--card-dark);
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
-            text-align: center;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 0 20px;
-        }
-
-        .info-item {
-            padding: 15px;
-            background-color: var(--bg-dark);
-            border-radius: 12px;
-            border: 1px solid rgba(var(--text-muted), 0.1);
-            transition: transform 0.3s ease;
-        }
-        .info-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .info-item h4 {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .info-item p {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .screenshots {
-            padding: 40px 0 80px;
-            text-align: center;
-        }
-
-        .screenshots h3 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-        }
-
-        .gallery {
-            display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 15px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
+            border-bottom: 3px solid #007bff; /* خط أزرق مميز */
+            padding-bottom: 15px;
             margin-bottom: 30px;
         }
-        .gallery::-webkit-scrollbar {
-            display: none;
+
+        .header h1 {
+            color: #007bff;
+            font-size: 28pt;
+            margin: 0;
         }
 
-        .gallery img {
-            min-width: 250px;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 4px solid var(--card-dark);
-            box-shadow: var(--shadow-strong);
-            cursor: pointer;
-            transition: transform 0.4s ease, border-color 0.4s ease;
-            scroll-snap-align: center;
-            transform: rotateY(5deg) scale(0.95);
-        }
-        .gallery img:hover {
-            transform: rotateY(0deg) scale(1.05);
-            border-color: var(--accent-color);
+        .header p {
+            font-size: 14pt;
+            margin: 5px 0;
+            color: #555;
         }
 
-        /* ======== Lightbox (عارض الصور المنبثق) - بقي كما هو ======== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
+        /* 4. معلومات المراقبين */
+        .supervisors {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 13pt;
         }
 
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            margin: auto;
-            display: block;
-            border-radius: 15px;
-            box-shadow: var(--shadow-strong);
-            animation: zoomIn 0.3s ease;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
+        .supervisors span {
             font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .lightbox-close:hover,
-        .lightbox-close:focus {
-            color: var(--accent-color);
-            text-decoration: none;
-            cursor: pointer;
+            color: #2a61a8;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); }
-            to { transform: scale(1); }
+        /* 5. جدول الأسماء (التصميم الأساسي) */
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12pt;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        /* ======== الفوتر (بقي كما هو) ======== */
-        footer {
-            background-color: var(--card-dark);
-            padding: 30px 20px;
+        .roster-table th, .roster-table td {
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            text-align: right;
+        }
+
+        .roster-table th {
+            background-color: #007bff; /* لون مميز لرأس الجدول */
+            color: white;
+            font-weight: bold;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(var(--primary-color), 0.2);
-            box-shadow: var(--shadow-soft) inset;
         }
 
-        /* ======== التجاوب مع الشاشات الأكبر (الكمبيوتر) ======== */
-        @media (min-width: 768px) {
-            header h1 {
-                font-size: 2.8rem;
+        .roster-table tr:nth-child(even) {
+            background-color: #f9f9f9; /* تظليل الصفوف الزوجية */
+        }
+
+        /* 6. تنسيق طلاب الانتساب (المطلوب) */
+        .affiliate-student {
+            background-color: #ffe8e8; /* خلفية وردية فاتحة */
+            color: #cc0000; /* لون أحمر غامق للنص */
+            font-weight: bold;
+        }
+
+        /* 7. تنسيقات الطباعة (جاهز للطباعة A4) */
+        @media print {
+            body {
+                background-color: #fff;
+                margin: 0;
+                padding: 0;
             }
 
-            .hero {
-                flex-direction: row-reverse;
-                justify-content: space-between;
-                padding: 80px 0;
-                text-align: right;
+            .page-container {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 0; /* إزالة الهامش للحصول على ملء الصفحة */
+                box-shadow: none; /* إزالة الظل */
+                border-radius: 0;
+                padding: 10mm; /* هامش طباعة أصغر */
+                page-break-after: always; /* إذا كان لديك أكثر من صفحة */
             }
 
-            .app-content {
-                width: 50%;
-            }
-
-            .app-content h2 {
-                font-size: 3.5rem;
-            }
-
-            /* إطار العرض على شاشات الكمبيوتر */
-            .display-panel-3d {
-                width: 45%;
-                max-width: 500px;
-                /* تأثير 3D أقوى ومناسب للشاشة الكبيرة */
-                transform: perspective(1200px) rotateY(-15deg) rotateX(10deg); 
-            }
-
-            .info-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .gallery img {
-                min-width: 300px;
-                height: 600px;
-                transform: rotateY(7deg) scale(0.95);
-            }
+            /* إزالة أي عناصر غير ضرورية في الطباعة إذا كانت موجودة */
+            /* .non-print-item { display: none; } */
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1></h1>
+    <div class="page-container">
+        
+        <div class="header">
+            <h1>📄 قائمة أسماء شعبة **[اسم الشعبة هنا]**</h1>
+            <p>للعام الدراسي: **2024 / 2025**</p>
+            <p>إجمالي عدد الطلاب: 50</p>
         </div>
-    </header>
 
-    <main class="container">
+        <div class="supervisors">
+            <p><span>المراقب الأستاذ:</span> **[أدخل اسم المراقب]**</p>
+            <p><span>مساعد المراقب الأستاذ:</span> **[أدخل اسم المساعد]**</p>
+        </div>
 
-        <section class="hero">
-            
-            <div class="display-panel-3d">
-                <img id="mainScreenshot" src="https://up6.cc/2025/10/176336413134331.png" alt="لقطة شاشة رئيسية للتطبيق">
-            </div>
+        <table class="roster-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">التسلسل</th>
+                    <th style="width: 60%;">الاسم الكامل للطالب</th>
+                    <th style="width: 30%;">ملاحظات (انتساب/إكمال)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="affiliate-student">
+                    <td>1</td>
+                    <td>محمد علي جاسم الكناني</td>
+                    <td>**طالب انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>2</td>
+                    <td>أحمد عبد الكريم الدليمي</td>
+                    <td>**طالب انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>3</td>
+                    <td>فاطمة الزهراء حيدر الخفاجي</td>
+                    <td>**طالبة انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>4</td>
+                    <td>علي حسين كاظم الشمري</td>
+                    <td>**طالب انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>5</td>
+                    <td>مريم حسن طارق العبيدي</td>
+                    <td>**طالبة انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>6</td>
+                    <td>زيد نبيل يوسف الطائي</td>
+                    <td>**طالب انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>7</td>
+                    <td>نور الهدى عمار السعدي</td>
+                    <td>**طالبة انتساب**</td>
+                </tr>
+                <tr class="affiliate-student">
+                    <td>8</td>
+                    <td>مصطفى وليد عباس الجنابي</td>
+                    <td>**طالب انتساب**</td>
+                </tr>
 
-            <div class="app-content">
-                <h2>منصة الاستاذ حيدر علي الطائي</h2>
-                <p>
-                    اكتشف تجربة جديدة كلياً مع تطبيقنا المبتكر. مصمم خصيصاً للدروس الاكترونيه للغه الانكليزيه السادس العلمي 
-                </p>
+                <tr><td>9</td><td>سارة قاسم حميد الزبيدي</td><td></td></tr>
+                <tr><td>10</td><td>مهند صباح عبد الرزاق</td><td></td></tr>
+                <tr><td>11</td><td>هدى فلاح حسن العزاوي</td><td></td></tr>
+                <tr><td>12</td><td>إبراهيم خالد عودة الجبوري</td><td></td></tr>
+                <tr><td>13</td><td>بتول سالم نزار البغدادي</td><td></td></tr>
+                <tr><td>14</td><td>حسين علي صادق الكعبي</td><td></td></tr>
+                <tr><td>15</td><td>ديانا ستار جبار العقابي</td><td></td></tr>
+                <tr><td>16</td><td>عمار ياسر محمد القريشي</td><td></td></tr>
+                <tr><td>17</td><td>غدير ماجد صالح الأسدي</td><td></td></tr>
+                <tr><td>18</td><td>كريم صلاح الدين إدريس</td><td></td></tr>
+                <tr><td>19</td><td>لمياء فؤاد رشيد الكروي</td><td></td></tr>
+                <tr><td>20</td><td>نايف عبد الله جاسم القيسي</td><td></td></tr>
+                <tr><td>21</td><td>يوسف أحمد حسين السامرائي</td><td></td></tr>
+                <tr><td>22</td><td>آلاء محمد نجم الربيعي</td><td></td></tr>
+                <tr><td>23</td><td>باسم نصير كاظم التميمي</td><td></td></tr>
+                <tr><td>24</td><td>تبارك جواد علي العبيدي</td><td></td></tr>
+                <tr><td>25</td><td>جنان سعد عادل العبيدي</td><td></td></tr>
+                <tr><td>26</td><td>حيدر نوري طاهر المياحي</td><td></td></tr>
+                <tr><td>27</td><td>دنيا سمير رزاق الشمري</td><td></td></tr>
+                <tr><td>28</td><td>رضا جعفر باقر الموسوي</td><td></td></tr>
+                <tr><td>29</td><td>زينب عامر ماجد المندلاوي</td><td></td></tr>
+                <tr><td>30</td><td>سجاد علي كريم الساعدي</td><td></td></tr>
+                <tr><td>31</td><td>شذى هاشم لؤي العزاوي</td><td></td></tr>
+                <tr><td>32</td><td>صالح عيسى جاسم القيسي</td><td></td></tr>
+                <tr><td>33</td><td>ضياء محمد علي الدراجي</td><td></td></tr>
+                <tr><td>34</td><td>طيبة عباس فهد العبودي</td><td></td></tr>
+                <tr><td>35</td><td>عبد الرحمن فواز عمر النعيمي</td><td></td></tr>
+                <tr><td>36</td><td>عذراء فاضل عباس الزيدي</td><td></td></tr>
+                <tr><td>37</td><td>فارس عدي نزار الطائي</td><td></td></tr>
+                <tr><td>38</td><td>قصي غالب سعيد السويدي</td><td></td></tr>
+                <tr><td>39</td><td>ليلى مرتضى حميد الكبيسي</td><td></td></tr>
+                <tr><td>40</td><td>محمد جعفر طاهر الفتلاوي</td><td></td></tr>
+                <tr><td>41</td><td>منال قيس حمود الحلبوسي</td><td></td></tr>
+                <tr><td>42</td><td>ناصر سالم حمزة الكناني</td><td></td></tr>
+                <tr><td>43</td><td>نغم ستار عبد الله العامري</td><td></td></tr>
+                <tr><td>44</td><td>هيثم خليل إبراهيم العاني</td><td></td></tr>
+                <tr><td>45</td><td>وائل نزار محمود العبيدي</td><td></td></tr>
+                <tr><td>46</td><td>يمنى حازم رشيد الجبوري</td><td></td></tr>
+                <tr><td>47</td><td>زمن عادل ماجد السعدي</td><td></td></tr>
+                <tr><td>48</td><td>ساجدة قاسم محمد العبيدي</td><td></td></tr>
+                <tr><td>49</td><td>عمر خالد عبد الله الدليمي</td><td></td></tr>
+                <tr><td>50</td><td>فداء حسن علي الزبيدي</td><td></td></tr>
+            </tbody>
+        </table>
 
-                <a href="https://top4top.io/downloadf-36086p4px1-apk.html" class="cta-button">
-                    <i class="fas fa-download"></i> تحميل الإصدار الأخير
-                </a>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
-                    *ملاحظة لمستخدمي أندرويد: قد تظهر لك رسالة أمنية، يرجى الضغط على "السماح" أو "تثبيت على أي حال" لإتمام التثبيت.
-                </p>
-            </div>
-
-        </section>
-
-        <section class="app-info">
-            <div class="info-grid">
-                <div class="info-item">
-                    <h4>الإصدار الحالي</h4>
-                    <p>v2.1.0</p>
-                </div>
-                <div class="info-item">
-                    <h4>الحجم</h4>
-                    <p>35 MB</p>
-                </div>
-                <div class="info-item">
-                    <h4>النظام المدعوم</h4>
-                    <p>Android 6.0+</p>
-                </div>
-                <div class="info-item">
-                    <h4>آخر تحديث</h4>
-                    <p>01-12-2025</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="screenshots">
-            <h3>شاهد التطبيق من الداخل اضغط على الصوره للفتح</h3>
-            <div class="gallery">
-                <img src="https://up6.cc/2025/10/176336366870291.png" alt="لقطة شاشة 1">
-                <img src="https://up6.cc/2025/10/176336366873012.png" alt="لقطة شاشة 2">
-                <img src="https://up6.cc/2025/10/176336366876693.png" alt="لقطة شاشة 3">
-                <img src="https://up6.cc/2025/10/176336366879084.png" alt="لقطة شاشة 4">
-                <img src="https://up6.cc/2025/10/176336366881955.png" alt="لقطة شاشة 5">
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>جميع الحقوق محفوظة © متجر قاسم عباس 2024</p>
-    </footer>
-
-    <div id="myLightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="img01">
     </div>
 
-    <script>
-        // ======== JavaScript لتشغيل الـ Lightbox (عارض الصور) - بقي كما هو ========
-        document.addEventListener('DOMContentLoaded', function() {
-            var galleryImages = document.querySelectorAll('.gallery img');
-            var lightbox = document.getElementById('myLightbox');
-            var lightboxImg = document.getElementById('img01');
-            var closeBtn = document.querySelector('.lightbox-close');
-
-            galleryImages.forEach(function(img) {
-                img.onclick = function(){
-                    lightbox.style.display = "flex";
-                    lightboxImg.src = this.src;
-                }
-            });
-
-            closeBtn.onclick = function() {
-                lightbox.style.display = "none";
-            }
-
-            lightbox.onclick = function(event) {
-                if (event.target == lightbox) {
-                    lightbox.style.display = "none";
-                }
-            }
-        });
-    </script>
 </body>
 </html>
