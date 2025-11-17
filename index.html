@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>متجر قاسم عباس</title>
-    
+    <title>متجر قاسم عباس </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* ======== إعدادات التصميم (أقوى) ======== */
+        /* ======== إعدادات الألوان والخطوط الأساسية ======== */
         :root {
-            --primary-color: #007BFF; /* أزرق ساطع */
-            --secondary-color: #00C6FF; /* أزرق سماوي */
-            --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            --bg-color: #0d0d0d;         /* أسود فخم */
-            --card-color: #1a1a1a;       /* لون البطاقات (أغمق) */
-            --text-color: #ffffff;       /* لون النص الأساسي */
-            --text-secondary: #b3b3b3;   /* لون النص الثانوي */
+            --primary-color: #0d6efd; /* أزرق عميق */
+            --secondary-color: #6610f2; /* بنفسجي غامق */
+            --accent-color: #fd7e14; /* برتقالي ساطع */
+            --bg-dark: #0a0a0a; /* خلفية سوداء عميقة */
+            --card-dark: #1c1c1c; /* لون البطاقات */
+            --text-light: #f0f0f0; /* نص فاتح */
+            --text-muted: #b0b0b0; /* نص ثانوي */
+            --shadow-strong: 0 15px 30px rgba(0, 0, 0, 0.4);
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --gradient-main: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* خلفية متحركة */
         }
 
         * {
@@ -30,208 +34,342 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
-            /* يجعل التمرير سلس */
+            background: var(--bg-dark); /* بدلاً من تدرج متحرك */
+            color: var(--text-light);
+            line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* لمنع التمرير الأفقي غير المرغوب فيه */
+            position: relative;
+        }
+
+        /* خلفية متفاعلة (تدرج لوني كبير يتحرك) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-bg);
+            background-size: 200% 200%;
+            animation: moveGradient 15s ease infinite;
+            z-index: -1;
+            opacity: 0.3; /* شفافية بسيطة */
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px; /* هام للموبايل */
+            padding: 0 15px;
         }
 
-        /* ======== الهيدر (اسم المتجر) ======== */
+        /* ======== الهيدر ======== */
         header {
+            background-color: rgba(28, 28, 28, 0.8); /* خلفية شبه شفافة */
+            backdrop-filter: blur(10px); /* تأثير الضبابية */
             padding: 20px 0;
             text-align: center;
-            background-color: var(--card-color);
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 1px solid rgba(var(--primary-color), 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
         }
 
         header h1 {
-            font-size: 2rem; /* مناسب للموبايل */
+            font-family: 'Montserrat', sans-serif; /* خط مختلف للعنوان */
+            font-size: 2.2rem;
             font-weight: 900;
-            color: var(--text-color);
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* ======== قسم التطبيق الرئيسي (Hero) ======== */
+        /* ======== قسم التطبيق الرئيسي (Hero Section) ======== */
         .hero {
-            padding: 40px 0;
+            padding: 60px 0 40px;
             display: flex;
-            flex-direction: column; /* الترتيب العمودي للموبايل */
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* للتأكد من أنها فوق الخلفية المتحركة */
         }
 
-        /* 1. إطار الموبايل (Mockup) */
+        /* إطار الموبايل بتصميم 3D */
         .phone-mockup {
-            width: 280px;
-            height: 560px;
-            background-color: #111;
-            border: 10px solid #222;
-            border-radius: 40px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 300px; /* حجم مناسب للموبايل */
+            height: 600px;
+            background: var(--bg-dark);
+            border: 15px solid var(--card-dark);
+            border-radius: 45px;
+            padding: 18px;
+            box-shadow: var(--shadow-strong);
             position: relative;
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg); /* تأثير 3D خفيف */
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+        }
+        .phone-mockup:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
         }
 
         .phone-mockup-screen {
             width: 100%;
             height: 100%;
-            background-color: var(--bg-color);
+            background-color: var(--card-dark);
             border-radius: 25px;
-            overflow: hidden; /* لإخفاء أطراف الصورة */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--text-muted);
         }
 
         .phone-mockup-screen img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* لجعل الصورة تملأ الشاشة */
-        }
-
-        /* 2. محتوى التطبيق (النص والزر) */
-        .app-content {
-            text-align: center;
-            width: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .app-content h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            line-height: 1.2;
         }
 
         .app-content p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 35px;
         }
 
-        /* ======== زر التحميل (مع أنيميشن) ======== */
+        /* ======== زر التحميل (مع أنيميشن ونبض) ======== */
         .cta-button {
-            display: inline-block;
-            background: var(--gradient);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-main);
             color: #ffffff;
-            padding: 18px 45px;
-            font-size: 1.2rem;
+            padding: 18px 40px;
+            font-size: 1.25rem;
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
-            /* الأنيميشن: النبض */
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* انتقال سلس */
+            box-shadow: var(--shadow-strong);
             animation: pulse 2s infinite ease-in-out;
         }
 
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 198, 255, 0.5);
-            animation: none; /* إيقاف النبض عند المرور */
+        .cta-button i {
+            font-size: 1.4rem;
         }
 
-        /* تعريف أنيميشن النبض */
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(var(--primary-color), 0.6);
+            animation: none;
+        }
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); box-shadow: var(--shadow-strong); }
+            50% { transform: scale(1.03); box-shadow: 0 18px 35px rgba(var(--primary-color), 0.5); }
+            100% { transform: scale(1); box-shadow: var(--shadow-strong); }
         }
 
         /* ======== قسم معلومات التطبيق ======== */
         .app-info {
             padding: 40px 0;
-            background-color: var(--card-color);
-            margin: 40px 0;
-            border-radius: 15px;
+            margin: 50px 0;
+            background-color: var(--card-dark);
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            text-align: center;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* عمودين */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* عمودين للموبايل */
             gap: 20px;
-            text-align: center;
+            padding: 0 20px;
+        }
+
+        .info-item {
+            padding: 15px;
+            background-color: var(--bg-dark);
+            border-radius: 12px;
+            border: 1px solid rgba(var(--text-muted), 0.1);
+            transition: transform 0.3s ease;
+        }
+        .info-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
         }
 
         .info-item h4 {
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
         .info-item p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
+            color: var(--accent-color);
         }
 
-        /* ======== قسم لقطات الشاشة (مناسب للموبايل) ======== */
+        /* ======== قسم لقطات الشاشة (معرض صور ثلاثي الأبعاد) ======== */
         .screenshots {
-            padding: 40px 0;
+            padding: 40px 0 80px;
             text-align: center;
         }
 
         .screenshots h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 40px;
         }
 
         .gallery {
             display: flex;
-            gap: 15px;
-            overflow-x: auto; /* يجعل الصور قابلة للتمرير أفقياً */
-            padding: 20px 10px;
-            /* لجعل التمرير يلتصق بالصورة (اختياري لكنه رائع) */
+            gap: 25px; /* مسافة أكبر */
+            overflow-x: auto;
+            padding: 20px 15px; /* هام للتمرير على الموبايل */
             scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* إخفاء شريط التمرير */
+            margin-bottom: 30px;
+        }
+        .gallery::-webkit-scrollbar {
+            display: none;
         }
 
         .gallery img {
-            width: 220px;
-            height: auto;
-            border-radius: 12px;
-            border: 3px solid var(--card-color);
-            scroll-snap-align: center; /* لجعل الصورة في المنتصف عند التمرير */
+            min-width: 250px; /* عرض ثابت لكل صورة */
+            height: 500px; /* ارتفاع ثابت */
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid var(--card-dark);
+            box-shadow: var(--shadow-strong);
+            cursor: pointer;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            scroll-snap-align: center;
+            transform: rotateY(5deg) scale(0.95); /* تأثير 3D افتراضي */
+        }
+        .gallery img:hover {
+            transform: rotateY(0deg) scale(1.05); /* إبراز عند المرور */
+            border-color: var(--accent-color);
+        }
+
+        /* ======== Lightbox (عارض الصور المنبثق) ======== */
+        .lightbox {
+            display: none; /* مخفي افتراضياً */
+            position: fixed;
+            z-index: 2000; /* فوق كل شيء */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* خلفية سوداء شفافة جداً */
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--shadow-strong);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
         }
 
         /* ======== الفوتر ======== */
         footer {
+            background-color: var(--card-dark);
+            padding: 30px 20px;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-            border-top: 1px solid var(--card-color);
-            color: var(--text-secondary);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(var(--primary-color), 0.2);
+            box-shadow: var(--shadow-soft) inset;
         }
 
-        /* ======== ⭐️ التجاوب مع الشاشات الأكبر (الكمبيوتر) ⭐️ ======== */
+        /* ======== التجاوب مع الشاشات الأكبر (الكمبيوتر) ======== */
         @media (min-width: 768px) {
-            .container {
-                padding: 0 40px;
+            header h1 {
+                font-size: 2.8rem;
             }
 
             .hero {
-                /* تحويله إلى عرض أفقي */
                 flex-direction: row-reverse; /* الـ Mockup على اليسار */
                 justify-content: space-between;
-                padding: 60px 0;
+                padding: 80px 0;
+                text-align: right;
             }
 
             .app-content {
-                text-align: right; /* محاذاة لليمين */
                 width: 50%;
             }
 
-            .phone-mockup {
-                width: 320px;
-                height: 640px;
+            .app-content h2 {
+                font-size: 3.5rem;
             }
 
-            .app-content h2 {
-                font-size: 3rem;
+            .phone-mockup {
+                width: 350px;
+                height: 700px;
+                transform: perspective(1000px) rotateY(-10deg) rotateX(7deg); /* تأثير 3D أقوى */
             }
-            
+
             .info-grid {
-                /* 4 أعمدة على الشاشة الكبيرة */
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, 1fr); /* 4 أعمدة للشاشات الكبيرة */
+            }
+
+            .gallery img {
+                min-width: 300px;
+                height: 600px;
+                transform: rotateY(7deg) scale(0.95);
             }
         }
     </style>
@@ -239,70 +377,106 @@
 <body>
 
     <header>
-        <h1>متجر قاسم عباس</h1>
+        <div class="container">
+            <h1>م قاسم عباس</h1>
+        </div>
     </header>
 
-    <div class="container">
-        <main>
+    <main class="container">
 
-            <section class="hero">
-                
-                <div class="phone-mockup">
-                    <div class="phone-mockup-screen">
-                        <img src="[url=https://g.top4top.io/p_36074pw391.png][img]https://g.top4top.io/s_36074pw391.png[/img][/url]" alt="لقطة شاشة للتطبيق">
-                    </div>
+        <section class="hero">
+            
+            <div class="phone-mockup">
+                <div class="phone-mockup-screen">
+                    <img id="mainScreenshot" src="https://via.placeholder.com/300x600/1e1e1e/fff?text=Main+App+Screen" alt="لقطة شاشة رئيسية للتطبيق">
                 </div>
+            </div>
 
-                <div class="app-content">
-                    <h2>منصة الاستاذ حيدر علي الطائي</h2>
-                    <p>
-                       ملاحظة لمستخدمي أندرويد: قد تظهر لك رسالة أمنية، يرجى الضغط على "السماح" أو "تثبيت على أي حال" لإتمام التثبيت .
-                    </p>
+            <div class="app-content">
+                <h2>منصة الاستاذ حيدر علي الطائي</h2>
+                <p>
+                  اكتشف تجربة جديدة كلياً مع تطبيقنا المبتكر. مصمم خصيصاً للدروس الاكترونيه للغه الانكليزيه السادس العلمي 
+                </p>
 
-                    <a href="https://top4top.io/downloadf-3607dc8xp1-apk.html" class="cta-button">
-                        تحميل الإصدار الأخير
-                    </a>
+                <a href="#" class="cta-button">
+                    <i class="fas fa-download"></i> تحميل الإصدار الأخير
+                </a>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+                    *ملاحظة لمستخدمي أندرويد: قد تظهر لك رسالة أمنية، يرجى الضغط على "السماح" أو "تثبيت على أي حال" لإتمام التثبيت.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="app-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>الإصدار الحالي</h4>
+                    <p>v2.1.0</p>
                 </div>
-
-            </section>
-
-            <section class="app-info">
-                <div class="info-grid container">
-                    <div class="info-item">
-                        <h4>الإصدار الحالي</h4>
-                        <p>v1.0.0</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>الحجم</h4>
-                        <p>25 MB</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>النظام</h4>
-                        <p>Android 5.0+</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>آخر تحديث</h4>
-                        <p>15-11-2025</p>
-                    </div>
+                <div class="info-item">
+                    <h4>الحجم</h4>
+                    <p>35 MB</p>
                 </div>
-            </section>
-
-            <section class="screenshots">
-                <h3>شاهد التطبيق من الداخل</h3>
-                <div class="gallery">
-                    <img src="https://j.top4top.io/p_3607z50o02.png" alt="لقطة شاشة 1">
-                    <img src="https://i.top4top.io/p_3607g2j1f1.png" alt="لقطة شاشة 2">
-                    <img src="https://l.top4top.io/p_360772uux4.png" alt="لقطة شاشة 3">
-                    <img src="https://l.top4top.io/p_36075a7ta1.png" alt="لقطة شاشة 4">
+                <div class="info-item">
+                    <h4>النظام المدعوم</h4>
+                    <p>Android 6.0+</p>
                 </div>
-            </section>
+                <div class="info-item">
+                    <h4>آخر تحديث</h4>
+                    <p>01-12-2025</p>
+                </div>
+            </div>
+        </section>
 
-        </main>
-    </div>
+        <section class="screenshots">
+            <h3>شاهد قوة التطبيق من الداخل</h3>
+            <div class="gallery">
+                <img src="https://up6.cc/2025/10/176336366870291.png" alt="لقطة شاشة 1">
+                <img src="https://up6.cc/2025/10/176336366873012.png" alt="لقطة شاشة 2">
+                <img src="https://up6.cc/2025/10/176336366876693.png" alt="لقطة شاشة 3">
+                <img src="https://up6.cc/2025/10/176336366879084.png" alt="لقطة شاشة 4">
+                <img src="https://up6.cc/2025/10/176336366881955.png" alt="لقطة شاشة 5">
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة © متجر قاسم عباس 2025</p>
+        <p>جميع الحقوق محفوظة © متجر قاسم عباس 2024</p>
     </footer>
 
+    <div id="myLightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="img01">
+    </div>
+
+    <script>
+        // ======== JavaScript لتشغيل الـ Lightbox (عارض الصور) ========
+        document.addEventListener('DOMContentLoaded', function() {
+            var galleryImages = document.querySelectorAll('.gallery img');
+            var lightbox = document.getElementById('myLightbox');
+            var lightboxImg = document.getElementById('img01');
+            var closeBtn = document.querySelector('.lightbox-close');
+
+            galleryImages.forEach(function(img) {
+                img.onclick = function(){
+                    lightbox.style.display = "flex"; // استخدام flexbox للمحاذاة
+                    lightboxImg.src = this.src;
+                }
+            });
+
+            closeBtn.onclick = function() {
+                lightbox.style.display = "none";
+            }
+
+            lightbox.onclick = function(event) {
+                // إغلاق عند النقر خارج الصورة
+                if (event.target == lightbox) {
+                    lightbox.style.display = "none";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
