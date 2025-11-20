@@ -3,317 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 قائمة أسماء شعبة د 💎</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>إعلان النتائج باللون الأزرق</title>
     <style>
-        /* 1. تنسيقات عامة وخطوط */
+        /* تنسيق عام للجسم */
         body {
-            font-family: 'Cairo', 'Amiri', sans-serif; /* خطوط عربية أنيقة */
-            background: linear-gradient(135deg, #1a2a3a, #0d1a2a); /* خلفية داكنة متدرجة */
-            color: #e0e0e0; /* لون نص فاتح */
+            background-color: #0d47a1; /* لون أزرق داكن للخلفية */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
-            direction: rtl; /* لغة عربية */
+            padding: 20px;
+            color: #ffffff; /* لون النص الافتراضي أبيض */
+            direction: rtl; /* لضمان الاتجاه من اليمين لليسار */
+            text-align: right;
         }
 
-        /* 2. حاوية الصفحة الرئيسية - اللمسة الماسية */
-        .page-container {
-            max-width: 210mm; /* عرض A4 تقريباً */
-            min-height: 297mm; /* ارتفاع A4 تقريباً */
-            margin: 20px auto;
-            padding: 25mm; /* هامش داخلي كبير لراحة الطباعة والفخامة */
-            background-color: #1a2a3a; /* لون خلفية أغمق للداخل */
-            border: 3px solid #00f0ff; /* إطار أزرق ماسي لامع */
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5), 0 0 15px rgba(255, 215, 0, 0.4); /* توهج ماسي وذهبي */
-            border-radius: 15px; /* حواف مستديرة قليلاً */
-            box-sizing: border-box;
-            position: relative; /* لتمكين وضع العناصر المطلقة */
-            overflow: hidden; /* لإخفاء أي جزء زائد من التوهجات */
-        }
-        
-        /* تأثيرات إضافية لجعل الإطار يبدو ثلاثي الأبعاد/ألماسياً */
-        .page-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid #ffd700; /* إطار ذهبي داخلي */
+        /* تنسيق الحاوية الرئيسية */
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #1565c0; /* لون أزرق متوسط للحاوية الداخلية */
+            padding: 30px 20px;
             border-radius: 15px;
-            pointer-events: none;
-            z-index: 1; /* للتأكد من ظهوره فوق الخلفية */
-            box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.3); /* توهج ذهبي داخلي */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
-        /* 3. العنوان والتفاصيل - بريق ذهبي */
+        /* تنسيق رأس الإعلان */
         .header {
             text-align: center;
-            border-bottom: 2px solid #ffd700; /* خط ذهبي فاخر */
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-            position: relative;
+            margin-bottom: 30px;
         }
 
-        .header h1 {
-            color: #ffd700; /* ذهبي */
-            font-family: 'Amiri', serif;
-            font-size: 32pt;
-            margin: 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 5px rgba(255, 215, 0, 0.5); /* توهج ذهبي */
+        .header-tag {
+            font-size: 1.1em;
+            color: #bbdefb; /* أزرق فاتح جداً */
+            margin: 0 0 10px 0;
             letter-spacing: 1px;
-            position: relative;
-            z-index: 2;
         }
 
-        .header p {
-            font-size: 14pt;
-            margin: 8px 0;
-            color: #b0c4de; /* أزرق فاتح مائل للرمادي */
-            font-weight: 300;
+        .main-title {
+            background-color: #42a5f5; /* شريط أزرق أفتح للعنوان الرئيسي */
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.8em;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .header::after {
-            content: '✦'; /* رمز نجمة/تألق */
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #00f0ff; /* أزرق ماسي */
-            font-size: 20pt;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
-            z-index: 2;
+        /* تنسيق قائمة النتائج */
+        .results-list {
+            margin-top: 20px;
         }
 
-        /* 4. معلومات المراقبين - بتصميم أنيق */
-        .supervisors {
+        .result-item {
+            background: linear-gradient(to left, #2196f3, #64b5f6); /* تدرج أزرق */
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            border-radius: 25px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 35px;
-            font-size: 14pt;
-            background-color: #2a3d4f; /* خلفية أغمق قليلاً */
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #4a6a8a;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 1.05em;
         }
 
-        .supervisors span {
+        .index {
+            background-color: #0d47a1; /* أزرق داكن للعنصر المرقم */
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 20px;
             font-weight: bold;
-            color: #00f0ff; /* أزرق ماسي */
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-        }
-
-        /* 5. جدول الأسماء - ماسي وذهبي */
-        .roster-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13pt;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            border: 1px solid #4a6a8a;
-            border-radius: 10px;
-            overflow: hidden; /* للحفاظ على حدود الجدول المدورة */
-        }
-
-        .roster-table th, .roster-table td {
-            border: 1px solid #3a506b; /* حدود داخلية أنيقة */
-            padding: 12px 18px;
-            text-align: right;
-            background-color: #2a3d4f;
-        }
-
-        .roster-table th {
-            background: linear-gradient(180deg, #0099cc, #0077aa); /* تدرج أزرق داكن لرأس الجدول */
-            color: white;
-            font-weight: bold;
+            min-width: 80px;
             text-align: center;
-            font-size: 14pt;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            border-bottom: 2px solid #00f0ff; /* خط أزرق ماسي تحت الرأس */
+            margin-left: 15px;
         }
 
-        .roster-table tr:nth-child(even) td {
-            background-color: #1f3041; /* تظليل الصفوف الزوجية بلون أغمق */
+        .details {
+            flex-grow: 1;
+            text-align: right;
+            color: #f1f8e9; /* لون نص فاتح */
         }
 
-        .roster-table tr:hover td {
-            background-color: #3a506b; /* تأثير عند تمرير الماوس */
+        /* تنسيق ذيل الصفحة (معلومات الاتصال) */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9em;
         }
 
-        /* 6. تنسيق طلاب الانتساب - ببريق ذهبي أحمر */
-        .affiliate-student td {
-            background: linear-gradient(90deg, #3d0000, #5c0000); /* تدرج أحمر داكن */
-            color: #ffd700; /* لون ذهبي للنص */
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.7); /* توهج ذهبي */
-            border-left: 5px solid #ffcc00; /* شريط ذهبي جانبي */
+        .social-media, .contact {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
         }
 
-        /* 7. تنسيقات الطباعة (جاهز للطباعة A4) */
-        @media print {
-            body {
-                background: #fff; /* خلفية بيضاء للطباعة */
-                color: #333;
-                margin: 0;
-                padding: 0;
-            }
-
-            .page-container {
-                width: 210mm;
-                min-height: 297mm;
-                margin: 0;
-                box-shadow: none;
-                border-radius: 0;
-                padding: 15mm; /* هامش طباعة أصغر قليلاً */
-                border: none; /* إزالة الحدود الماسية للطباعة */
-                background-color: #fff; /* خلفية بيضاء داخلية */
-            }
-
-            .page-container::before {
-                display: none; /* إزالة الإطار الذهبي الداخلي في الطباعة */
-            }
-
-            .header {
-                border-bottom: 2px solid #007bff; /* خط أزرق قياسي للطباعة */
-                margin-bottom: 20px;
-                color: #000;
-            }
-            .header h1 {
-                color: #000;
-                text-shadow: none;
-                font-size: 24pt;
-            }
-            .header p {
-                color: #555;
-                font-size: 12pt;
-            }
-            .header::after {
-                display: none; /* إزالة رمز التألق */
-            }
-
-            .supervisors {
-                background-color: #e0e7ed; /* خلفية فاتحة للمراقبين */
-                color: #333;
-                border: 1px solid #ccc;
-                margin-bottom: 20px;
-                font-size: 11pt;
-            }
-            .supervisors span {
-                color: #007bff; /* أزرق قياسي */
-                text-shadow: none;
-            }
-
-            .roster-table {
-                box-shadow: none;
-                border: 1px solid #ccc;
-                border-radius: 0;
-            }
-            .roster-table th, .roster-table td {
-                border: 1px solid #ccc;
-                background-color: #fff;
-                color: #333;
-                padding: 8px 12px;
-            }
-            .roster-table th {
-                background: #007bff; /* أزرق قياسي */
-                color: white;
-                text-shadow: none;
-            }
-            .roster-table tr:nth-child(even) td {
-                background-color: #f2f2f2;
-            }
-            .roster-table tr:hover td {
-                background-color: #f2f2f2; /* إزالة تأثير الهوفر */
-            }
-
-            .affiliate-student td {
-                background: #ffe6e6; /* خلفية حمراء فاتحة للطباعة */
-                color: #cc0000; /* أحمر داكن */
-                text-shadow: none;
-                border-left: 3px solid #ff9999; /* شريط أحمر فاتح جانبي */
-            }
+        .social-media a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-right: 5px;
         }
+
+        /* ملاحظة: تم استخدام النصوص [أيقونة] لتمثيل الأيقونات لعدم توفرها في HTML/CSS بدون مكتبة خارجية (مثل Font Awesome) */
     </style>
 </head>
 <body>
-
-    <div class="page-container">
-        
+    <div class="container">
         <div class="header">
-            <h1>💎 قائمة أسماء شعبة د** 💎</h1>
-            <p>للعام الدراسي: 2025/2026**</p>
-            <p>إجمالي عدد الطلاب: 42 طالباً قابل لزيادة</p>
+            <h3 class="header-tag">#الدورة_الالكترونية_المجانية</h3>
+            <h1 class="main-title">النتائج الالكترونية النهائية</h1>
         </div>
 
-        <div class="supervisors">
-            <p><span>المراقب:</span> ياسر عمار صبيح </p>
-            <p><span>مساعد المراقب:</span> قاسم عباس خماس</p>
+        <div class="results-list">
+            
+            <div class="result-item">
+                <span class="index">1. الاسم</span>
+                <span class="details">رقية احمد موحان / محافظة بغداد</span>
+            </div>
+
+            <div class="result-item">
+                <span class="index">2. الاسم</span>
+                <span class="details">فاطمة ثائر سعدي / محافظة بغداد</span>
+            </div>
+
+            <div class="result-item">
+                <span class="index">3. الاسم</span>
+                <span class="details">مايا ميناس / محافظة اربيل</span>
+            </div>
+            
+             <div class="result-item">
+                <span class="index">4. الاسم</span>
+                <span class="details">رهف ماجد / محافظة بغداد</span>
+            </div>
+            
+            <div class="result-item">
+                <span class="index">5. الاسم</span>
+                <span class="details">زينب علي ابراهيم عبد الامير / محافظة واسط</span>
+            </div>
+            
+            <div class="result-item">
+                <span class="index">6. الاسم</span>
+                <span class="details">هاجر فاخر سرحان / محافظة النجف الاشرف</span>
+            </div>
+            
+             <div class="result-item">
+                <span class="index">7. الاسم</span>
+                <span class="details">وتين علي / محافظة ميسان</span>
+            </div>
+            
+            <div class="result-item">
+                <span class="index">8. الاسم</span>
+                <span class="details">استبرق مازن / محافظة نينوى</span>
+            </div>
+            
+            <div class="result-item">
+                <span class="index">9. الاسم</span>
+                <span class="details">اضواء منصور عكاش / محافظة الانبار</span>
+            </div>
+            
+             <div class="result-item">
+                <span class="index">10. الاسم</span>
+                <span class="details">جمانه حسين عباس / محافظة ديالى</span>
+            </div>
+            
         </div>
 
-        <table class="roster-table">
-            <thead>
-                <tr>
-                    <th style="width: 10%;">التسلسل</th>
-                    <th style="width: 60%;">الاسم الكامل للطالب</th>
-                    <th style="width: 30%;">ملاحظات (انتساب/تميُّز)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="affiliate-student"><td>1</td><td>ابو الفضل عباس هولي</td><td>**طالب انتساب **</td></tr>
-                <tr class="affiliate-student"><td>2</td><td>أحمد شاكر حسين</td><td>**طالب انتساب **</td></tr>
-                <tr class="affiliate-student"><td>3</td><td>حسين علاء محسن </td><td>**طالب انتساب **</td></tr>
-                <tr class="affiliate-student"><td>4</td><td>عباس قاسم محمد</td><td>**طالب انتساب**</td></tr>
-                <tr class="affiliate-student"><td>5</td><td>علي خالد شعل</td><td>**طالب انتساب **</td></tr>
-                <tr class="affiliate-student"><td>6</td><td>مومل موسى زبون</td><td>**طالب انتساب**</td></tr>
-                <tr class="affiliate-student"><td>7</td><td>محمد مصطفى عبد الزهره</td><td>**طالب انتساب **</td></tr>
-                <tr class="affiliate-student"><td>8</td><td>مصطفى احمد خماس</td><td>**طالب انتساب**</td></tr>
-
-                <tr><td>9</td><td>احمد حسام سرحان</td><td></td></tr>
-                <tr><td>10</td><td>حيدر جبار شيحان</td><td></td></tr>
-                <tr><td>11</td><td>حيدر عباس غالي</td><td></td></tr>
-                <tr><td>12</td><td>سجاد محمد حسين </td><td></td></tr>
-                <tr><td>13</td><td>صادق جعفر شاطي</td><td></td></tr>
-                <tr><td>14</td><td>صادق حيدر عباس</td><td></td></tr>
-                <tr><td>15</td><td>عباس حسين رشك </td><td></td></tr>
-                <tr><td>16</td><td>عباس محمد حسين</td><td></td></tr>
-                <tr><td>17</td><td>علاء كريم مطر</td><td></td></tr>
-                <tr><td>18</td><td>علي مصطفى عبد الواحد</td><td></td></tr>
-                <tr><td>19</td><td>قاسم عباس خماس </td><td></td></tr>
-                <tr><td>20</td><td>غزوان حسين حميد</td><td></td></tr>
-                <tr><td>21</td><td>قاسم ياسر عباس</td><td></td></tr>
-                <tr><td>22</td><td>كرار هاني نوري</td><td></td></tr>
-                <tr><td>23</td><td>مومل اركان حنطه</td><td></td></tr>
-                <tr><td>24</td><td>محمد جاسم حسين </td><td></td></tr>
-                <tr><td>25</td><td>محمد سعدون مطشر</td><td></td></tr>
-                <tr><td>26</td><td>محمد صبيح نعيمه</td><td></td></tr>
-                <tr><td>27</td><td>محمد عبد الرحمن سعد</td><td></td></tr>
-                <tr><td>28</td><td>مصطفى جاسم جبر</td><td></td></tr>
-                <tr><td>29</td><td>مصطفى فاضل شويع</td><td></td></tr>
-                <tr><td>30</td><td>مقتدى باسم سعيد</td><td></td></tr>
-                <tr><td>31</td><td>مقتدى سامي نعمه</td><td></td></tr>
-                <tr><td>32</td><td>مقتدى هاشم حميد</td><td></td></tr>
-                <tr><td>33</td><td>منتظر ضياء عزيز</td><td></td></tr>
-                <tr><td>34</td><td>منتظر محمد ندامه</td><td></td></tr>
-                <tr><td>35</td><td>موسى محمد خشان</td><td></td></tr>
-                <tr><td>36</td><td>ميثم ايهاب حسين </td><td></td></tr>
-                <tr><td>37</td><td>ياسر عقيل كريم</td><td></td></tr>
-                <tr><td>38</td><td>ياسر عمار صبيح(المراقب)</td><td></td></tr>
-                <tr><td>39</td><td>علاء حسين صباح</td><td></td></tr>
-                <tr><td>40</td><td>عباس محمد عبد الساده</td><td></td></tr>
-                <tr><td>41</td><td>سجاد احمد عبد الحسين </td><td></td></tr>
-                <tr><td>42</td><td></td><td></td></tr>
-                <tr><td>43</td><td></td><td></td></tr>
-                <tr><td>44</td><td></td><td></td></tr>
-                <tr><td>45</td><td></td><td></td></tr>
-                <tr><td>46</td><td></td><td></td></tr>
-                <tr><td>47</td><td></td><td></td></tr>
-                <tr><td>48</td><td></td><td></td></tr>
-                <tr><td>49</td><td></td><td></td></tr>
-                <tr><td>50</td><td></td><td></td></tr>
-            </tbody>
-        </table>
-
+        <div class="footer">
+            <div class="social-media">
+                <span>[أيقونة]</span>
+                <a href="#">@ALSudaneAli</a>
+            </div>
+            <div class="contact">
+                <span>[أيقونة هاتف]</span>
+                <span>0773 657 6660</span>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>
