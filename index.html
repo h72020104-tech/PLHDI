@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إعلان النتائج باللون الأزرق</title>
+    <title>إعلان النتائج بالألوان الأصلية</title>
     <style>
         /* تنسيق عام للجسم */
         body {
-            background-color: #0d47a1; /* لون أزرق داكن للخلفية */
+            /* لون الخلفية: رمادي داكن أو أسود تقريباً */
+            background-color: #212121; 
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
@@ -15,8 +16,8 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            color: #ffffff; /* لون النص الافتراضي أبيض */
-            direction: rtl; /* لضمان الاتجاه من اليمين لليسار */
+            color: #ffffff; 
+            direction: rtl;
             text-align: right;
         }
 
@@ -24,10 +25,11 @@
         .container {
             width: 100%;
             max-width: 500px;
-            background-color: #1565c0; /* لون أزرق متوسط للحاوية الداخلية */
+            /* لون الحاوية الداخلية: أسود تقريباً */
+            background-color: #000000; 
             padding: 30px 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
             position: relative;
         }
 
@@ -39,20 +41,24 @@
 
         .header-tag {
             font-size: 1.1em;
-            color: #bbdefb; /* أزرق فاتح جداً */
+            color: #ffffff; 
             margin: 0 0 10px 0;
             letter-spacing: 1px;
+            /* لون النص على اليمين فوق العنوان */
+            text-align: left; 
         }
 
         .main-title {
-            background-color: #42a5f5; /* شريط أزرق أفتح للعنوان الرئيسي */
-            color: #ffffff;
+            /* لون شريط العنوان الرئيسي: ذهبي فاتح/أصفر */
+            background-color: #e6c15b; 
+            color: #000000; /* لون الخط أسود */
             padding: 15px 30px;
             border-radius: 30px;
             font-size: 1.8em;
             font-weight: bold;
             display: inline-block;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
         }
 
         /* تنسيق قائمة النتائج */
@@ -61,7 +67,8 @@
         }
 
         .result-item {
-            background: linear-gradient(to left, #2196f3, #64b5f6); /* تدرج أزرق */
+            /* لون شريط الاسم: ذهبي/بني مشابه للصورة */
+            background-color: #bf9531; 
             padding: 12px 20px;
             margin-bottom: 15px;
             border-radius: 25px;
@@ -70,23 +77,27 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             font-size: 1.05em;
+            color: #000000; /* الخط داخل الشريط أسود */
         }
 
         .index {
-            background-color: #0d47a1; /* أزرق داكن للعنصر المرقم */
-            color: #ffffff;
+            /* لون الخلفية للعنصر المرقم: ذهبي أغمق أو بني */
+            background-color: #a47d27; 
+            color: #000000; /* الخط أسود */
             padding: 5px 10px;
             border-radius: 20px;
             font-weight: bold;
             min-width: 80px;
             text-align: center;
             margin-left: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .details {
             flex-grow: 1;
             text-align: right;
-            color: #f1f8e9; /* لون نص فاتح */
+            color: #000000; /* الخط أسود */
+            font-weight: 500;
         }
 
         /* تنسيق ذيل الصفحة (معلومات الاتصال) */
@@ -112,14 +123,18 @@
             margin-right: 5px;
         }
 
-        /* ملاحظة: تم استخدام النصوص [أيقونة] لتمثيل الأيقونات لعدم توفرها في HTML/CSS بدون مكتبة خارجية (مثل Font Awesome) */
+        /* لتغيير ألوان أيقونات التواصل الاجتماعي لتناسب الخلفية الداكنة */
+        .footer .contact span, .footer .social-media span {
+            color: #e6c15b; /* لون ذهبي/أصفر للأيقونات */
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h3 class="header-tag">#الدورة_الالكترونية_المجانية</h3>
-            <h1 class="main-title">النتائج الالكترونية النهائية</h1>
+             <div style="text-align: left;"><h3 class="header-tag">#الدورة_المجانية_الالكترونية</h3></div>
+            <h1 class="main-title">الدورة الالكترونية المجانية</h1>
         </div>
 
         <div class="results-list">
@@ -178,11 +193,13 @@
 
         <div class="footer">
             <div class="social-media">
-                <span>[أيقونة]</span>
+                <span>[f]</span>
+                <span>[in]</span>
+                <span>[t]</span>
                 <a href="#">@ALSudaneAli</a>
             </div>
             <div class="contact">
-                <span>[أيقونة هاتف]</span>
+                <span>[📞]</span>
                 <span>0773 657 6660</span>
             </div>
         </div>
