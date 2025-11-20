@@ -3,100 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إعلان النتائج بالألوان الأصلية</title>
+    <title>إعلان النتائج لأبعاد الكمبيوتر</title>
     <style>
         /* تنسيق عام للجسم */
         body {
-            /* لون الخلفية: رمادي داكن أو أسود تقريباً */
             background-color: #212121; 
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            /* للتأكد من أن التصميم يملأ ارتفاع الشاشة */
+            min-height: 100vh; 
             margin: 0;
-            padding: 20px;
+            padding: 40px; /* زيادة التباعد الخارجي */
             color: #ffffff; 
             direction: rtl;
             text-align: right;
         }
 
-        /* تنسيق الحاوية الرئيسية */
+        /* تنسيق الحاوية الرئيسية (التعديل للكمبيوتر) */
         .container {
             width: 100%;
-            max-width: 500px;
-            /* لون الحاوية الداخلية: أسود تقريباً */
+            /* زيادة العرض الأقصى ليتناسب مع شاشات الكمبيوتر */
+            max-width: 750px; 
             background-color: #000000; 
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+            padding: 50px 40px; /* زيادة التباعد الداخلي */
+            border-radius: 20px; /* زيادة حافة الانحناء */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
             position: relative;
         }
 
         /* تنسيق رأس الإعلان */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .header-tag {
-            font-size: 1.1em;
+            font-size: 1.2em; /* زيادة حجم الخط */
             color: #ffffff; 
             margin: 0 0 10px 0;
             letter-spacing: 1px;
-            /* لون النص على اليمين فوق العنوان */
             text-align: left; 
         }
 
         .main-title {
-            /* لون شريط العنوان الرئيسي: ذهبي فاتح/أصفر */
             background-color: #e6c15b; 
-            color: #000000; /* لون الخط أسود */
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.8em;
+            color: #000000; 
+            padding: 20px 40px; /* زيادة التباعد للعنوان */
+            border-radius: 40px;
+            font-size: 2.2em; /* زيادة حجم الخط للعنوان */
             font-weight: bold;
             display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
             margin-top: 20px;
         }
 
         /* تنسيق قائمة النتائج */
         .results-list {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .result-item {
-            /* لون شريط الاسم: ذهبي/بني مشابه للصورة */
             background-color: #bf9531; 
-            padding: 12px 20px;
-            margin-bottom: 15px;
-            border-radius: 25px;
+            padding: 15px 30px; /* زيادة التباعد داخل شريط الاسم */
+            margin-bottom: 20px;
+            border-radius: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            font-size: 1.05em;
-            color: #000000; /* الخط داخل الشريط أسود */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            font-size: 1.2em; /* زيادة حجم خط الاسم */
+            color: #000000; 
         }
 
         .index {
-            /* لون الخلفية للعنصر المرقم: ذهبي أغمق أو بني */
             background-color: #a47d27; 
-            color: #000000; /* الخط أسود */
-            padding: 5px 10px;
-            border-radius: 20px;
+            color: #000000; 
+            padding: 8px 15px; /* زيادة حجم العنصر المرقم */
+            border-radius: 25px;
             font-weight: bold;
-            min-width: 80px;
+            min-width: 90px;
             text-align: center;
-            margin-left: 15px;
+            margin-left: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .details {
             flex-grow: 1;
             text-align: right;
-            color: #000000; /* الخط أسود */
+            color: #000000; 
             font-weight: 500;
         }
 
@@ -105,10 +101,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 20px;
-            margin-top: 30px;
+            padding-top: 30px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
-            font-size: 0.9em;
+            font-size: 1em; /* زيادة حجم خط التذييل */
         }
 
         .social-media, .contact {
@@ -120,20 +116,20 @@
         .social-media a {
             color: #ffffff;
             text-decoration: none;
-            margin-right: 5px;
+            margin-right: 8px;
         }
 
-        /* لتغيير ألوان أيقونات التواصل الاجتماعي لتناسب الخلفية الداكنة */
         .footer .contact span, .footer .social-media span {
-            color: #e6c15b; /* لون ذهبي/أصفر للأيقونات */
-            margin-left: 5px;
+            color: #e6c15b; 
+            margin-left: 8px;
+            font-size: 1.2em; /* حجم أكبر للأيقونات الوهمية */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-             <div style="text-align: left;"><h3 class="header-tag">#الدورة_المجانية_الالكترونية</h3></div>
+            <div style="text-align: left;"><h3 class="header-tag">#الدورة_المجانية_الالكترونية</h3></div>
             <h1 class="main-title">الدورة الالكترونية المجانية</h1>
         </div>
 
