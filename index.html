@@ -3,174 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ الماتريكس النيوني - قوة جعفر النقدي ⚡</title>
+    <title>⚡ التشكيلة الأسطورية - إعدادية جعفر النقدي ⚡</title>
     
     <style>
-        /* إعدادات الخلفية والمنظور 3D */
+        /* الإعدادات الأساسية للعرض على الشاشات الكبيرة (Desktop) */
         body {
-            background: #000000;
+            background-color: #000000;
             color: #fff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
             text-align: center;
-            /* المنظور 3D لتأثير العمق */
-            perspective: 1000px; 
-            background-image: radial-gradient(circle at center, #011f01 0%, #000000 70%); /* خلفية الماتريكس */
+            overflow-x: hidden;
         }
 
-        /* العنوان: أقوى تأثير Glitch متقدم */
-        .glitch-title {
-            font-size: 5rem;
-            color: #00ff88; /* نيون أخضر - لون القوة */
-            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 40px #00ff88;
-            letter-spacing: 5px;
-            animation: glitch-power 3s infinite alternate;
-            padding: 50px 0 20px;
-        }
-
-        @keyframes glitch-power {
-            0% { text-shadow: 0 0 10px #00ff88, 5px 5px 0 #ff00ff; }
-            50% { text-shadow: 0 0 20px #00ff88, -5px -5px 0 #ff00ff; }
-            100% { text-shadow: 0 0 10px #00ff88, 0 0 0 #ff00ff; }
-        }
-
-        .subtitle {
-            font-size: 1.8rem;
-            color: #ff00ff; /* نيون أرجواني */
-            text-shadow: 0 0 8px #ff00ff;
-            margin-bottom: 30px;
-        }
-
-        /* تخطيط البطاقات */
-        .squad-container {
+        .field-container {
+            width: 100%;
+            height: 90vh; 
+            background: radial-gradient(circle at center, #008800 0%, #004400 70%); 
+            border: 5px solid #00ff88; 
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 50px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
+            /* تحديد مناطق شبكة الملعب (للتوزيع على الشاشة الكبيرة) */
+            grid-template-areas: 
+                "FWD_L FWD_C FWD_R" 
+                ". MID_L ." 
+                "MID_C MID_C MID_C" 
+                ". MID_R ." 
+                "DEF_L DEF_C DEF_R" 
+                ". GK ." 
+                ;
+            grid-template-rows: 20% 15% 15% 15% 20% 15%; 
+            padding: 20px;
         }
 
-        /* بطاقة اللاعب: تصميم درع ثلاثي الأبعاد */
+        .field-container::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 3px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #ffffff;
+            transform: translateY(-50%);
+        }
+
+        .glitch-title {
+            font-size: 3rem;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            padding: 10px 0;
+            background-color: #111;
+        }
+
+        /* بطاقة اللاعب (النقطة النيونيّة) */
         .player-card {
             background: rgba(0, 0, 0, 0.7);
             border: 2px solid #00ff88;
-            padding: 30px 20px;
             border-radius: 10px;
-            position: relative;
-            
-            /* تأثير الحركة والظهور (Animation on Load) */
+            padding: 10px;
+            align-self: center;
+            justify-self: center;
+            width: 80%; 
+            transition: transform 0.3s, box-shadow 0.3s;
             opacity: 0; 
-            transform: rotateX(70deg) translateY(50px) scale(0.8); /* تبدأ مائلة ومصغرة */
-            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* حركة زنبركية قوية */
-
-            /* النيون المتوهج (الطبقة السفلية) */
-            box-shadow: 0 0 10px #00ff88;
+            transform: scale(0.5); 
         }
         
-        /* تأثير النيون القوي باستخدام ::before */
-        .player-card::before {
-            content: '';
-            position: absolute;
-            top: -5px; right: -5px; bottom: -5px; left: -5px;
-            border: 2px solid #ff00ff;
-            border-radius: 12px;
-            z-index: -1;
-            /* تأثير الوميض النيوني */
-            box-shadow: 0 0 20px #ff00ff;
-            opacity: 0.5;
-            animation: neon-pulse 1s infinite alternate;
-        }
-
-        @keyframes neon-pulse {
-            from { box-shadow: 0 0 15px #ff00ff; }
-            to { box-shadow: 0 0 30px #ff00ff; }
-        }
-
-        /* التفاعل: قلب البطاقة عند المرور بالماوس 3D */
         .player-card:hover {
-            transform: rotateY(5deg) scale(1.03) translateZ(50px); /* تقلب وتتقدم للأمام */
-            box-shadow: 0 0 30px #00ff88, 0 0 60px #ff00ff;
+            transform: scale(1.1); 
+            box-shadow: 0 0 20px #00ff88, 0 0 40px #ff00ff;
             cursor: pointer;
         }
 
         .player-name {
-            font-size: 2.2rem;
-            font-weight: 900;
+            font-size: 1rem;
+            font-weight: bold;
             color: #fff;
-            text-shadow: 0 0 5px #fff, 0 0 15px #00ff88; /* نيون الاسم */
-            border-bottom: 2px dashed #00ff88;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+            text-shadow: 0 0 5px #fff;
+        }
+        .player-role {
+             font-size: 0.8rem;
+             color: #ff00ff;
         }
 
-        .player-number {
-            font-size: 1.5rem;
-            color: #ff00ff;
-            font-style: italic;
-        }
+        /* تحديد مناطق توزيع اللاعبين (Desktop) */
+        .GK { grid-area: GK; }
+        .DEF_R { grid-area: DEF_R; }
+        .DEF_C { grid-area: DEF_C; }
+        .DEF_L { grid-area: DEF_L; }
+        .MID_R { grid-area: MID_R; } 
+        .MID_C { grid-area: MID_C; }
+        .MID_L { grid-area: MID_L; }
+        .FWD_R { grid-area: FWD_R; }
+        .FWD_C { grid-area: FWD_C; }
+        .FWD_L { grid-area: FWD_L; }
 
-        .footer-note {
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #00ff88;
+        /* =================================================== */
+        /* 📱 تعديلات الموبايل (Media Query) - الأبعاد المناسبة */
+        /* تطبق هذه الإعدادات على الشاشات التي تقل عن 600 بكسل (معظم الهواتف) */
+        @media only screen and (max-width: 600px) {
+            .glitch-title {
+                font-size: 2rem; /* تصغير العنوان ليناسب الشاشة */
+            }
+            
+            .field-container {
+                height: auto; /* ارتفاع تلقائي ليحتوي العناصر */
+                display: flex; /* تحويل العرض إلى عمودي */
+                flex-direction: column;
+                padding: 10px;
+                border-width: 3px;
+            }
+            
+            .field-container::before {
+                display: none; /* إخفاء الخط الأوسط لعدم الحاجة في العرض العمودي */
+            }
+
+            .player-card {
+                width: 90%; /* توسيع البطاقة لملء عرض الشاشة */
+                margin: 10px auto; /* مسافات عمودية بين البطاقات */
+                padding: 15px;
+                transform: scale(1); /* إلغاء التكبير المبدئي للموبايل */
+                box-shadow: 0 0 15px #00ff88;
+                opacity: 1; /* عرض فوري بدون تأثير الظهور المتسلسل القوي */
+            }
+
+            .player-card:hover {
+                 transform: scale(1.02); /* تكبير بسيط عند التفاعل */
+            }
+            
+            .player-name {
+                font-size: 1.2rem; /* زيادة حجم الاسم */
+            }
+            .player-role {
+                font-size: 0.9rem;
+            }
         }
+        /* =================================================== */
     </style>
 </head>
 <body>
 
-    <header class="hero-section">
-        <h1 class="glitch-title">⚡ السادس د  ⚡</h1>
-        <p class="subtitle">المدرب مقتدى سامي</p>
-    </header>
+    <h1 class="glitch-title">خطة إعدادية جعفر النقدي (4-3-3)</h1>
 
-    <main class="squad-container">
+    <main class="field-container">
         </main>
 
-    <footer class="footer-note">
-        <p style="color: #00ff88; text-shadow: 0 0 5px #00ff88;">كود التدمير - أقوى تصميم بتاريخ الأكواد</p>
-    </footer>
-
     <script>
-        // *** أسماء اللاعبين الأبطال ***
         const playerNames = [
-            "قاسم عباس",
-            "ابو الفضل عباس",
-            "ميثم ايهاب",
-            "مقتدى باسم",
-            "علاء حسين",
-            "منتظر ضياء",
-            "مومل موسى",
-            "ياسر عقيل كريم"
+            // توزيع اللاعبين (8) على المراكز
+            { name: "ياسر عقيل كريم", role: "حارس مرمى", class: "GK" },
+            { name: "مومل موسى", role: "ظهير أيسر", class: "DEF_L" },
+            { name: "منتظر ضياء", role: "قلب دفاع", class: "DEF_C" },
+            { name: "علاء حسين", role: "قلب دفاع", class: "DEF_C" },
+            { name: "مقتدى باسم", role: "ظهير أيمن", class: "DEF_R" },
+            { name: "ميثم ايهاب", role: "محور (DM)", class: "MID_R" },
+            { name: "ابو الفضل عباس", role: "وسط مهاجم (CM)", class: "MID_C" },
+            { name: "قاسم عباس", role: "مهاجم", class: "FWD_C" }
         ];
 
-        const squadContainer = document.querySelector('.squad-container');
+        const squadContainer = document.querySelector('.field-container');
 
-        playerNames.forEach((name, index) => {
+        playerNames.forEach((player, index) => {
             const card = document.createElement('div');
-            card.className = 'player-card';
-
+            // لاحظ أن كلاس الموقع (مثل GK) لن يُستخدم في شاشة الموبايل، بل سيتم ترتيبهم عموديًا
+            card.className = `player-card ${player.class}`; 
+            
             const nameElement = document.createElement('h2');
             nameElement.className = 'player-name';
-            nameElement.textContent = name;
+            nameElement.textContent = player.name;
 
-            const numberElement = document.createElement('p');
-            numberElement.className = 'player-number';
-            // إظهار الترتيب الرمزي داخل الفريق
-            numberElement.textContent = `القوة الرمزية: #${index + 1}`; 
+            const roleElement = document.createElement('p');
+            roleElement.className = 'player-role';
+            roleElement.textContent = player.role;
 
+            card.appendChild(roleElement);
             card.appendChild(nameElement);
-            card.appendChild(numberElement);
             squadContainer.appendChild(card);
 
-            // إضافة تأخير (Delay) لتأثير الانبثاق 3D القوي
-            setTimeout(() => {
-                card.style.opacity = 1;
-                // عند التأخير، تعود البطاقة لوضعها الطبيعي (الانفجار على الشاشة)
-                card.style.transform = 'rotateX(0deg) translateY(0) scale(1)'; 
-            }, index * 180 + 500); // تأخير أقوى (180ms بين كل بطاقة + 500ms لتأخير البدء)
+            // تأثير الظهور المتسلسل (يُفضل تقليله أو إلغاؤه في الموبايل لتحسين الأداء)
+            if (window.innerWidth > 600) {
+                 setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = 'scale(1)'; 
+                }, index * 200 + 300); 
+            } else {
+                 card.style.opacity = 1;
+                 card.style.transform = 'scale(1)';
+            }
         });
     </script>
 </body>
