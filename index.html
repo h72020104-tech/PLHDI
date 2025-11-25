@@ -3,120 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قصيدة حنين - تصميم فاخر</title>
+    <title>قصيدة - ريفي ماسي</title>
     <style>
-        /* استيراد خطوط قوية وفخمة (مزيج من الأناقة والجودة) */
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
+        /* استيراد خطوط بسيطة وأنيقة تناسب الجو الريفي */
+        @import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap');
 
         body {
-            /* خلفية مظلمة وفخمة (لون كحلي داكن أو أسود أنيق) */
-            font-family: 'Tajawal', sans-serif;
-            background-color: #0d1a26; 
-            color: #e6e6e6; /* لون نص فاتح */
+            /* خلفية ريفية بألوان ترابية ودافئة */
+            font-family: 'Scheherazade New', serif;
+            background-color: #f7f3e8; /* لون الطين الفاتح */
+            color: #4a3d34; /* لون ترابي داكن للنص */
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            /* إضافة نسيج خفيف للخلفية (كتأثير ريفي) */
+            background-image: linear-gradient(45deg, #f7f3e8 25%, transparent 25%),
+                              linear-gradient(-45deg, #f7f3e8 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, #ebe7d8 75%),
+                              linear-gradient(-45deg, transparent 75%, #ebe7d8 75%);
+            background-size: 20px 20px;
         }
 
         .poem-container {
-            max-width: 700px;
+            max-width: 650px;
             width: 90%;
-            /* خلفية الحاوية لون أغمق قليلاً من الخلفية العامة */
-            background-color: #1a2938; 
-            padding: 50px 60px;
-            border-radius: 20px; 
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* ظل عميق وقوي */
+            background-color: #fffaf0; /* خلفية بيضاء دافئة للحاوية */
+            padding: 40px 50px;
+            border-radius: 10px; 
             text-align: center;
-            /* إطار ذهبي لامع حول الحاوية */
-            border: 3px solid #ffd700; 
-            box-sizing: border-box;
+            
+            /* تأثير ماسي ثلاثي الأبعاد */
+            border: 5px solid #a0a0a0; /* إطار رمادي */
+            box-shadow: 
+                0 0 0 3px #e0e0e0, /* إطار ثانوي فضي لامع */
+                0 0 10px rgba(0, 0, 0, 0.1), 
+                -10px -10px 10px rgba(255, 255, 255, 0.8) inset, /* إضاءة علوية 3D */
+                10px 10px 10px rgba(0, 0, 0, 0.1) inset; /* ظل سفلي 3D */
+            
+            perspective: 1000px; /* لتمكين تأثير 3D على العناصر الداخلية */
         }
 
         .title {
-            color: #ffd700; /* لون ذهبي للعنوان */
-            font-size: 2.8em;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 3px double #ffd70040; /* خط فاصل مزدوج */
-            font-family: 'Almarai', sans-serif;
+            color: #8c5d3f; /* لون خشبي/بني دافئ */
+            font-family: 'Lateef', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #8c5d3f;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
         .line {
-            font-size: 1.6em; /* حجم خط كبير وواضح */
-            line-height: 2;
-            margin-bottom: 8px; 
-            color: #f0f0f0;
+            font-size: 1.5em;
+            line-height: 1.8;
+            margin-bottom: 5px; 
+            color: #38312e; 
             font-weight: 400;
         }
 
         .separator {
             font-size: 2.5em;
-            color: #ffcc00; /* لون النقاط بلون ذهبي واضح */
-            margin: 10px 0 10px 0; 
-            letter-spacing: 10px; /* مسافة كبيرة بين النقاط */
+            color: #92b8d0; /* لون أزرق ماسي فاتح */
+            margin: 10px 0; 
+            letter-spacing: 15px;
             display: block;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* ظل خفيف للنقاط */
+            
+            /* تأثير النقاط الماسية */
+            text-shadow: 
+                0 0 5px #c3e2f5, /* توهج لامع */
+                0 0 15px rgba(146, 184, 208, 0.8); /* هالة زرقاء خفيفة */
+            transform: rotateY(10deg); /* إمالة بسيطة لتعطي إحساس الـ 3D */
         }
-
-        /* تمييز الأبيات الأخيرة بتأثير أقوى */
-        .last-lines .line {
+        
+        .poet-signature {
+            margin-top: 35px;
+            padding-top: 15px;
+            border-top: 1px solid #c0c0c0;
+            font-size: 1.2em;
+            color: #6d421d; /* لون داكن للتوقيع */
+            font-family: 'Lateef', serif;
+        }
+        .poet-signature span {
             font-weight: 700;
-            color: #ff9900;
+            color: #4a3d34;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
     <div class="poem-container">
-        <div class="title">✨ نَبض الحَنين ✨</div>
+        <div class="title">🍃 نغمات ريفية ماسية 💎</div>
 
-        <div class="stanzas">
-            <p class="line">لهسه اذكر كلت راح ابقه وياك</p>
-            <span class="separator">. . .</span>
-            <p class="line">واني الغشيم الصدكت بيك</p>
-            
-            <span class="separator">. . .</span>
-
-            <p class="line">بنادم المفروض يحسب لكلشي احساب</p>
-            <span class="separator">. . .</span>
-            <p class="line">تحسب كون لابن امك من يجافيك</p>
-
-            <span class="separator">. . .</span>
-
-            <p class="line">ويه اخوي اتعارك جنت وياه</p>
-            <span class="separator">. . .</span>
-            <p class="line">اخاف جان يغثك من يحاجيك</p>
-
-            <span class="separator">. . .</span>
-
-            <p class="line">ومره بليل كتلي اني زعلان</p>
-            <span class="separator">. . .</span>
-            <p class="line">وانا ابابكم لصبح حته اراضيك</p>
-
-            <span class="separator">. . .</span>
-
-            <p class="line">وكل هذا ولا اجه وياك</p>
-            <span class="separator">. . .</span>
-            <p class="line">تجلب بليمر من يناغيك</p>
-
-            <span class="separator">. . .</span>
-
-            <p class="line">فاتحه اهلي اعوفنه وامر بيك</p>
-            <span class="separator">. . .</span>
-            <p class="line">جي سابع جار الك متوفي اواسيك</p>
-        </div>
+        <p class="line">لهسه اذكر كلت راح ابقه وياك</p>
+        <span class="separator">. . . .</span>
+        <p class="line">واني الغشيم الصدكت بيك</p>
         
-        <div class="last-lines">
-            <span class="separator">. . .</span>
-            <p class="line">وراح انتضر جيتك لو تمر ع البال</p>
-            <span class="separator">. . .</span>
-            <p class="line">بلكي بلحلم صدفه اكعد احاجيك</p>
+        <span class="separator">. . . .</span>
+
+        <p class="line">بنادم المفروض يحسب لكلشي احساب</p>
+        <span class="separator">. . . .</span>
+        <p class="line">تحسب كون لابن امك من يجافيك</p>
+
+        <span class="separator">. . . .</span>
+
+        <p class="line">ويه اخوي اتعارك جنت وياه</p>
+        <span class="separator">. . . .</span>
+        <p class="line">اخاف جان يغثك من يحاجيك</p>
+
+        <span class="separator">. . . .</span>
+
+        <p class="line">ومره بليل كتلي اني زعلان</p>
+        <span class="separator">. . . .</span>
+        <p class="line">وانا ابابكم لصبح حته اراضيك</p>
+
+        <span class="separator">. . . .</span>
+
+        <p class="line">وكل هذا ولا اجه وياك</p>
+        <span class="separator">. . . .</span>
+        <p class="line">تجلب بليمر من يناغيك</p>
+
+        <span class="separator">. . . .</span>
+
+        <p class="line">فاتحه اهلي اعوفنه وامر بيك</p>
+        <span class="separator">. . . .</span>
+        <p class="line">جي سابع جار الك متوفي اواسيك</p>
+
+        <span class="separator">. . . .</span>
+        
+        <p class="line">وراح انتضر جيتك لو تمر ع البال</p>
+        <span class="separator">. . . .</span>
+        <p class="line">بلكي بلحلم صدفه اكعد احاجيك</p>
+
+        <div class="poet-signature">
+            ل
+            <span>قاسم عباس</span>
         </div>
     </div>
 
