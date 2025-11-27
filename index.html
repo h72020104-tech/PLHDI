@@ -2,16 +2,50 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>جدول بطولة جعفر النقدي - 16 فريق</title>
+    <title>بطولة جعفر النقدي - إشراف الأستاذ غيث</title>
     <style>
-        /* CSS للتصميم */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            padding: 20px;
+        /* تعريف الألوان والمتغيرات */
+        :root {
+            --primary-color: #004d99; /* أزرق ملكي داكن */
+            --secondary-color: #4CAF50; /* أخضر عشبي */
+            --background-color: #e8f5e9; /* خلفية خفيفة جداً */
+            --winner-color: #FFD700; /* ذهبي */
+            --text-color: #212529;
+            --border-style: 2px solid var(--primary-color);
         }
 
+        /* تنسيقات الجسم والخلفية */
+        body {
+            font-family: 'Droid Arabic Kufi', 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 30px;
+            text-align: right;
+        }
+
+        /* عنوان البطولة واسم المشرف */
+        .header-title {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .header-title p {
+            margin-top: 5px;
+            font-size: 1.1em;
+            color: #c0c0c0; /* لون رمادي فاتح لاسم الأستاذ */
+        }
+
+        /* حاوية الجدول */
         .bracket-container {
             display: flex;
             flex-direction: row;
@@ -19,113 +53,128 @@
             align-items: flex-start;
             padding: 20px;
             overflow-x: auto;
-            border: 2px solid #007bff;
-            border-radius: 10px;
+            border: var(--border-style);
+            border-radius: 12px;
             background-color: #ffffff;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* تنسيق الدور (Round) */
         .round {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 15px;
-            min-width: 150px;
+            margin: 0 20px;
+            min-width: 180px;
         }
 
         .round h3 {
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-            font-size: 1.2em;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
         }
 
+        /* المباراة (Matchup) */
         .matchup {
             display: flex;
             flex-direction: column;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             position: relative;
         }
 
+        /* الفريق (Team Box) */
         .team {
-            background-color: #e9ecef;
-            padding: 8px 12px;
-            margin-bottom: 2px;
-            border-radius: 4px;
-            border-left: 5px solid #007bff; /* شريط جانبي */
-            font-weight: bold;
-            font-size: 0.9em;
+            background-color: #f0f8ff; /* أزرق سماوي فاتح */
+            padding: 10px 15px;
+            margin-bottom: 3px;
+            border-radius: 6px;
+            border-right: 5px solid var(--primary-color); /* خط التمييز لجهة اليمين */
+            font-weight: 600;
+            font-size: 1em;
             text-align: right;
-            min-width: 150px;
+            min-width: 170px;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        /* خطوط الربط بين المباريات */
+        .team:hover {
+            background-color: #e0f7fa;
+        }
+
+        /* خطوط الربط الأفقية (داخل الدور) */
         .matchup:after {
             content: '';
             position: absolute;
             top: 50%;
-            left: -15px; /* تبدأ قبل الماتش */
-            height: 1px;
-            width: 15px;
-            background-color: #007bff;
+            left: -18px; 
+            height: 2px;
+            width: 18px;
+            background-color: var(--primary-color);
             transform: translateY(-50%);
         }
 
-        /* الروابط العمودية والأفقية بين الأدوار */
+        /* خطوط الربط العمودية والأفقية (بين الأدوار) */
+        /* الخط العلوي */
         .round:not(:last-child) .matchup:nth-child(odd):before {
             content: '';
             position: absolute;
-            top: calc(100% + 2px);
-            right: -30px; /* المسافة بين الأدوار */
-            width: 30px;
-            height: calc(100% + 60px); /* يربط المباراة الحالية بالتي تليها */
-            border-right: 1px solid #007bff;
-            border-top: 1px solid #007bff;
+            top: calc(100% + 3px);
+            right: -35px;
+            width: 35px;
+            height: calc(100% + 80px); /* يزيد ليتناسب مع الهامش */
+            border-right: 2px solid var(--secondary-color);
+            border-top: 2px solid var(--secondary-color);
         }
-
+        /* الخط السفلي */
         .round:not(:last-child) .matchup:nth-child(even):before {
             content: '';
             position: absolute;
-            top: -30px;
-            right: -30px;
-            width: 30px;
-            height: 30px;
-            border-right: 1px solid #007bff;
-            border-bottom: 1px solid #007bff;
+            top: -40px;
+            right: -35px;
+            width: 35px;
+            height: 40px;
+            border-right: 2px solid var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
         }
 
-        /* الفائز (يمكن تحديثه يدوياً أو بكود JS) */
+        /* تصميم الفائز (Championship Winner) */
         .winner {
-            background-color: #28a745;
-            color: white;
-            border-left: 5px solid #218838;
-        }
-
-        /* تصميم الكأس */
-        .final-matchup {
-            margin-top: 100px; /* مسافة للأعلى */
+            background-color: var(--winner-color) !important;
+            color: var(--primary-color) !important;
+            border-right: 6px solid #b8860b !important;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
         
+        /* تصميم الكأس */
         .championship {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 60px;
         }
         
         .trophy {
-            font-size: 3em;
-            color: gold;
+            font-size: 4em;
+            color: var(--winner-color);
+            text-shadow: 2px 2px 4px #b8860b;
         }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align: center; color: #007bff;">⚽ جدول بطولة مدرسة جعفر النقدي السداسية عشر (16 فريق) 🏆</h1>
+    <div class="header-title">
+        <h1>🏆 جدول بطولة مدرسة جعفر النقدي السداسية عشر (16 فريق) ⚽</h1>
+        <p>إشراف وتنظيم: **الأستاذ غيث** - مجهود مميز</p>
+    </div>
     
     <div class="bracket-container">
         
         <div class="round">
             <h3>دور الـ 16</h3>
-            <div class="matchup"><div class="team">فريق 1</div><div class="team">فريق 16</div></div>
+            <div class="matchup"><div class="team">فريق 1 (الصف 4أ)</div><div class="team">فريق 16 (الصف 3ب)</div></div>
             <div class="matchup"><div class="team">فريق 8</div><div class="team">فريق 9</div></div>
             <div class="matchup"><div class="team">فريق 5</div><div class="team">فريق 12</div></div>
             <div class="matchup"><div class="team">فريق 4</div><div class="team">فريق 13</div></div>
@@ -151,7 +200,7 @@
 
         <div class="round">
             <h3>النهائي</h3>
-            <div class="matchup final-matchup">
+            <div class="matchup final-matchup" style="margin-top: 40px;">
                 <div class="team">فائز نصف 1</div>
                 <div class="team">فائز نصف 2</div>
             </div>
@@ -160,9 +209,11 @@
     </div>
     
     <div class="championship">
-        <h2>البطل</h2>
-        <span class="trophy">🏆</span>
-        <div class="team winner" style="max-width: 250px; margin: 10px auto;">(اسم الفريق الفائز)</div>
+        <h2>بطل بطولة جعفر النقدي</h2>
+        <span class="trophy">🥇</span>
+        <div class="team winner" style="max-width: 300px; margin: 15px auto;">
+            (ضع اسم الفريق البطل هنا بعد انتهاء البطولة)
+        </div>
     </div>
 
 </body>
