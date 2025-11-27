@@ -2,195 +2,168 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ التشكيلة الأسطورية - إعدادية جعفر النقدي ⚡</title>
-    
+    <title>جدول بطولة جعفر النقدي - 16 فريق</title>
     <style>
-        /* الإعدادات الأساسية للعرض على الشاشات الكبيرة (Desktop) */
+        /* CSS للتصميم */
         body {
-            background-color: #000000;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        .field-container {
-            width: 100%;
-            height: 90vh; 
-            background: radial-gradient(circle at center, #008800 0%, #004400 70%); 
-            border: 5px solid #00ff88; 
-            position: relative;
-            display: grid;
-            /* تحديد مناطق شبكة الملعب (للتوزيع على الشاشة الكبيرة) */
-            grid-template-areas: 
-                "FWD_L FWD_C FWD_R" 
-                ". MID_L ." 
-                "MID_C MID_C MID_C" 
-                ". MID_R ." 
-                "DEF_L DEF_C DEF_R" 
-                ". GK ." 
-                ;
-            grid-template-rows: 20% 15% 15% 15% 20% 15%; 
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
             padding: 20px;
         }
 
-        .field-container::before {
+        .bracket-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow-x: auto;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 15px;
+            min-width: 150px;
+        }
+
+        .round h3 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .matchup {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .team {
+            background-color: #e9ecef;
+            padding: 8px 12px;
+            margin-bottom: 2px;
+            border-radius: 4px;
+            border-left: 5px solid #007bff; /* شريط جانبي */
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: right;
+            min-width: 150px;
+        }
+
+        /* خطوط الربط بين المباريات */
+        .matchup:after {
             content: '';
             position: absolute;
-            top: 50%; left: 0; right: 0;
-            height: 3px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px #ffffff;
+            top: 50%;
+            left: -15px; /* تبدأ قبل الماتش */
+            height: 1px;
+            width: 15px;
+            background-color: #007bff;
             transform: translateY(-50%);
         }
 
-        .glitch-title {
-            font-size: 3rem;
-            color: #ff00ff;
-            text-shadow: 0 0 10px #ff00ff;
-            padding: 10px 0;
-            background-color: #111;
+        /* الروابط العمودية والأفقية بين الأدوار */
+        .round:not(:last-child) .matchup:nth-child(odd):before {
+            content: '';
+            position: absolute;
+            top: calc(100% + 2px);
+            right: -30px; /* المسافة بين الأدوار */
+            width: 30px;
+            height: calc(100% + 60px); /* يربط المباراة الحالية بالتي تليها */
+            border-right: 1px solid #007bff;
+            border-top: 1px solid #007bff;
         }
 
-        /* بطاقة اللاعب (النقطة النيونيّة) */
-        .player-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #00ff88;
-            border-radius: 10px;
-            padding: 10px;
-            align-self: center;
-            justify-self: center;
-            width: 80%; 
-            transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 0; 
-            transform: scale(0.5); 
+        .round:not(:last-child) .matchup:nth-child(even):before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 30px;
+            height: 30px;
+            border-right: 1px solid #007bff;
+            border-bottom: 1px solid #007bff;
+        }
+
+        /* الفائز (يمكن تحديثه يدوياً أو بكود JS) */
+        .winner {
+            background-color: #28a745;
+            color: white;
+            border-left: 5px solid #218838;
+        }
+
+        /* تصميم الكأس */
+        .final-matchup {
+            margin-top: 100px; /* مسافة للأعلى */
         }
         
-        .player-card:hover {
-            transform: scale(1.1); 
-            box-shadow: 0 0 20px #00ff88, 0 0 40px #ff00ff;
-            cursor: pointer;
+        .championship {
+            text-align: center;
+            margin-top: 50px;
         }
-
-        .player-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 5px #fff;
+        
+        .trophy {
+            font-size: 3em;
+            color: gold;
         }
-        .player-role {
-             font-size: 0.8rem;
-             color: #ff00ff;
-        }
-
-        /* تحديد مناطق توزيع اللاعبين (Desktop) */
-        .GK { grid-area: GK; }
-        .DEF_R { grid-area: DEF_R; }
-        .DEF_C { grid-area: DEF_C; }
-        .DEF_L { grid-area: DEF_L; }
-        .MID_R { grid-area: MID_R; } 
-        .MID_C { grid-area: MID_C; }
-        .MID_L { grid-area: MID_L; }
-        .FWD_R { grid-area: FWD_R; }
-        .FWD_C { grid-area: FWD_C; }
-        .FWD_L { grid-area: FWD_L; }
-
-        /* =================================================== */
-        /* 📱 تعديلات الموبايل (Media Query) - الأبعاد المناسبة */
-        /* تطبق هذه الإعدادات على الشاشات التي تقل عن 600 بكسل (معظم الهواتف) */
-        @media only screen and (max-width: 600px) {
-            .glitch-title {
-                font-size: 2rem; /* تصغير العنوان ليناسب الشاشة */
-            }
-            
-            .field-container {
-                height: auto; /* ارتفاع تلقائي ليحتوي العناصر */
-                display: flex; /* تحويل العرض إلى عمودي */
-                flex-direction: column;
-                padding: 10px;
-                border-width: 3px;
-            }
-            
-            .field-container::before {
-                display: none; /* إخفاء الخط الأوسط لعدم الحاجة في العرض العمودي */
-            }
-
-            .player-card {
-                width: 90%; /* توسيع البطاقة لملء عرض الشاشة */
-                margin: 10px auto; /* مسافات عمودية بين البطاقات */
-                padding: 15px;
-                transform: scale(1); /* إلغاء التكبير المبدئي للموبايل */
-                box-shadow: 0 0 15px #00ff88;
-                opacity: 1; /* عرض فوري بدون تأثير الظهور المتسلسل القوي */
-            }
-
-            .player-card:hover {
-                 transform: scale(1.02); /* تكبير بسيط عند التفاعل */
-            }
-            
-            .player-name {
-                font-size: 1.2rem; /* زيادة حجم الاسم */
-            }
-            .player-role {
-                font-size: 0.9rem;
-            }
-        }
-        /* =================================================== */
     </style>
 </head>
 <body>
 
-    <h1 class="glitch-title">خطة إعدادية جعفر النقدي (4-3-3)</h1>
+    <h1 style="text-align: center; color: #007bff;">⚽ جدول بطولة مدرسة جعفر النقدي السداسية عشر (16 فريق) 🏆</h1>
+    
+    <div class="bracket-container">
+        
+        <div class="round">
+            <h3>دور الـ 16</h3>
+            <div class="matchup"><div class="team">فريق 1</div><div class="team">فريق 16</div></div>
+            <div class="matchup"><div class="team">فريق 8</div><div class="team">فريق 9</div></div>
+            <div class="matchup"><div class="team">فريق 5</div><div class="team">فريق 12</div></div>
+            <div class="matchup"><div class="team">فريق 4</div><div class="team">فريق 13</div></div>
+            <div class="matchup"><div class="team">فريق 3</div><div class="team">فريق 14</div></div>
+            <div class="matchup"><div class="team">فريق 6</div><div class="team">فريق 11</div></div>
+            <div class="matchup"><div class="team">فريق 7</div><div class="team">فريق 10</div></div>
+            <div class="matchup"><div class="team">فريق 2</div><div class="team">فريق 15</div></div>
+        </div>
 
-    <main class="field-container">
-        </main>
+        <div class="round">
+            <h3>ربع النهائي</h3>
+            <div class="matchup"><div class="team">فائز م1</div><div class="team">فائز م2</div></div>
+            <div class="matchup"><div class="team">فائز م3</div><div class="team">فائز م4</div></div>
+            <div class="matchup"><div class="team">فائز م5</div><div class="team">فائز م6</div></div>
+            <div class="matchup"><div class="team">فائز م7</div><div class="team">فائز م8</div></div>
+        </div>
 
-    <script>
-        const playerNames = [
-            // توزيع اللاعبين (8) على المراكز
-            { name: "ياسر عقيل كريم", role: "حارس مرمى", class: "GK" },
-            { name: "مومل موسى", role: "ظهير أيسر", class: "DEF_L" },
-            { name: "منتظر ضياء", role: "قلب دفاع", class: "DEF_C" },
-            { name: "علاء حسين", role: "قلب دفاع", class: "DEF_C" },
-            { name: "مقتدى باسم", role: "ظهير أيمن", class: "DEF_R" },
-            { name: "ميثم ايهاب", role: "محور (DM)", class: "MID_R" },
-            { name: "ابو الفضل عباس", role: "وسط مهاجم (CM)", class: "MID_C" },
-            { name: "قاسم عباس", role: "مهاجم", class: "FWD_C" }
-        ];
+        <div class="round">
+            <h3>نصف النهائي</h3>
+            <div class="matchup"><div class="team">فائز ربع 1</div><div class="team">فائز ربع 2</div></div>
+            <div class="matchup"><div class="team">فائز ربع 3</div><div class="team">فائز ربع 4</div></div>
+        </div>
 
-        const squadContainer = document.querySelector('.field-container');
+        <div class="round">
+            <h3>النهائي</h3>
+            <div class="matchup final-matchup">
+                <div class="team">فائز نصف 1</div>
+                <div class="team">فائز نصف 2</div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="championship">
+        <h2>البطل</h2>
+        <span class="trophy">🏆</span>
+        <div class="team winner" style="max-width: 250px; margin: 10px auto;">(اسم الفريق الفائز)</div>
+    </div>
 
-        playerNames.forEach((player, index) => {
-            const card = document.createElement('div');
-            // لاحظ أن كلاس الموقع (مثل GK) لن يُستخدم في شاشة الموبايل، بل سيتم ترتيبهم عموديًا
-            card.className = `player-card ${player.class}`; 
-            
-            const nameElement = document.createElement('h2');
-            nameElement.className = 'player-name';
-            nameElement.textContent = player.name;
-
-            const roleElement = document.createElement('p');
-            roleElement.className = 'player-role';
-            roleElement.textContent = player.role;
-
-            card.appendChild(roleElement);
-            card.appendChild(nameElement);
-            squadContainer.appendChild(card);
-
-            // تأثير الظهور المتسلسل (يُفضل تقليله أو إلغاؤه في الموبايل لتحسين الأداء)
-            if (window.innerWidth > 600) {
-                 setTimeout(() => {
-                    card.style.opacity = 1;
-                    card.style.transform = 'scale(1)'; 
-                }, index * 200 + 300); 
-            } else {
-                 card.style.opacity = 1;
-                 card.style.transform = 'scale(1)';
-            }
-        });
-    </script>
 </body>
 </html>
