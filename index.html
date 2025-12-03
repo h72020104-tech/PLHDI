@@ -2,219 +2,141 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>بطولة جعفر النقدي - إشراف الأستاذ غيث</title>
+    <title>قائمة الأسماء - المراقب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* تعريف الألوان والمتغيرات */
-        :root {
-            --primary-color: #004d99; /* أزرق ملكي داكن */
-            --secondary-color: #4CAF50; /* أخضر عشبي */
-            --background-color: #e8f5e9; /* خلفية خفيفة جداً */
-            --winner-color: #FFD700; /* ذهبي */
-            --text-color: #212529;
-            --border-style: 2px solid var(--primary-color);
-        }
+        @page { size: A4; margin: 0; }
+        body { font-family: 'Amiri', serif; margin: 0; padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page-container { width: 210mm; height: 296mm; margin: auto; padding: 10mm; box-sizing: border-box; overflow: hidden; }
+        .frame { border: 4px double #0d47a1; height: 99%; padding: 5px; position: relative; }
+        .frame::after { content: ""; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 1px solid #c5a059; pointer-events: none; z-index: -1; }
+        header { text-align: center; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; margin-bottom: 5px; }
+        h1 { margin: 0; font-size: 20pt; color: #0d47a1; }
+        .sub-title { font-size: 14pt; font-weight: bold; color: #333; display: flex; justify-content: space-between; padding: 0 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 11pt; margin-top: 5px; }
+        th { background-color: #0d47a1; color: white; padding: 2px; border: 1px solid #000; }
+        td { border: 1px solid #666; padding: 0 5px; height: 20px; vertical-align: middle; }
+        .col-id { width: 30px; text-align: center; font-weight: bold; }
+        .col-name { text-align: right; }
+        .col-note { width: 100px; }
+        
+        /* تنسيق الانتساب */
+        .intisab-row { background-color: #fff9c4 !important; }
+        .intisab-row .col-name { color: #b71c1c; font-weight: bold; }
+        .badge { font-size: 9pt; float: left; background: #b71c1c; color: white; padding: 0 4px; border-radius: 3px; margin-top: 2px; }
 
-        /* تنسيقات الجسم والخلفية */
-        body {
-            font-family: 'Droid Arabic Kufi', 'Arial', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            padding: 30px;
-            text-align: right;
+        /* منطقة التواقيع الجديدة */
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px; 
+            font-size: 11pt;
+            padding: 0 10px;
         }
-
-        /* عنوان البطولة واسم المشرف */
-        .header-title {
+        .signature-block {
+            width: 45%;
             text-align: center;
-            margin-bottom: 40px;
-            padding: 15px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
-        .header-title h1 {
-            margin: 0;
-            font-size: 2.2em;
-        }
-
-        .header-title p {
+        .signature-block span {
+            display: block;
             margin-top: 5px;
-            font-size: 1.1em;
-            color: #c0c0c0; /* لون رمادي فاتح لاسم الأستاذ */
         }
-
-        /* حاوية الجدول */
-        .bracket-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            overflow-x: auto;
-            border: var(--border-style);
-            border-radius: 12px;
-            background-color: #ffffff;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* تنسيق الدور (Round) */
-        .round {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 20px;
-            min-width: 180px;
-        }
-
-        .round h3 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 8px;
-            margin-bottom: 25px;
-            font-size: 1.3em;
+        .signature-block .name-line {
             font-weight: bold;
+            margin: 5px auto 15px auto; 
+            padding-bottom: 2px;
+            border-bottom: 1px dashed #000; /* خط متقطع للتوقيع */
+            width: 80%;
         }
 
-        /* المباراة (Matchup) */
-        .matchup {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        /* الفريق (Team Box) */
-        .team {
-            background-color: #f0f8ff; /* أزرق سماوي فاتح */
-            padding: 10px 15px;
-            margin-bottom: 3px;
-            border-radius: 6px;
-            border-right: 5px solid var(--primary-color); /* خط التمييز لجهة اليمين */
-            font-weight: 600;
-            font-size: 1em;
-            text-align: right;
-            min-width: 170px;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .team:hover {
-            background-color: #e0f7fa;
-        }
-
-        /* خطوط الربط الأفقية (داخل الدور) */
-        .matchup:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -18px; 
-            height: 2px;
-            width: 18px;
-            background-color: var(--primary-color);
-            transform: translateY(-50%);
-        }
-
-        /* خطوط الربط العمودية والأفقية (بين الأدوار) */
-        /* الخط العلوي */
-        .round:not(:last-child) .matchup:nth-child(odd):before {
-            content: '';
-            position: absolute;
-            top: calc(100% + 3px);
-            right: -35px;
-            width: 35px;
-            height: calc(100% + 80px); /* يزيد ليتناسب مع الهامش */
-            border-right: 2px solid var(--secondary-color);
-            border-top: 2px solid var(--secondary-color);
-        }
-        /* الخط السفلي */
-        .round:not(:last-child) .matchup:nth-child(even):before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            right: -35px;
-            width: 35px;
-            height: 40px;
-            border-right: 2px solid var(--secondary-color);
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        /* تصميم الفائز (Championship Winner) */
-        .winner {
-            background-color: var(--winner-color) !important;
-            color: var(--primary-color) !important;
-            border-right: 6px solid #b8860b !important;
-            font-size: 1.2em;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-        }
-        
-        /* تصميم الكأس */
-        .championship {
-            text-align: center;
-            margin-top: 60px;
-        }
-        
-        .trophy {
-            font-size: 4em;
-            color: var(--winner-color);
-            text-shadow: 2px 2px 4px #b8860b;
-        }
+        @media print { .page-container { width: 100%; height: 100%; padding: 5mm; } }
     </style>
 </head>
 <body>
 
-    <div class="header-title">
-        <h1>🏆 جدول بطولة مدرسة جعفر النقدي السداسية عشر (16 فريق) ⚽</h1>
-        <p>إشراف وتنظيم: **الأستاذ غيث** - مجهود مميز</p>
-    </div>
-    
-    <div class="bracket-container">
+<div class="page-container">
+    <div class="frame">
+        <header>
+            <h1>قائمة أسماء الطلبة</h1>
+            <div class="sub-title">
+                <span>الشعبة: ( د )</span>
+                <span>العام الدراسي: 2024 - 2025</span>
+            </div>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-id">ت</th>
+                    <th class="col-name">الاسم الرباعي واللقب</th>
+                    <th class="col-note">الملاحظات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="intisab-row"><td class="col-id">1</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">2</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">3</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">4</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">5</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">6</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td class="col-id">7</td><td class="col-name">اكتب اسم طالب الانتساب هنا<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+
+                <tr><td class="col-id">8</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">9</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">10</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">11</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">12</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">13</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">14</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">15</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">16</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">17</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">18</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">19</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">20</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">21</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">22</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">23</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">24</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">25</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">26</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">27</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">28</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">29</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">30</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">31</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">32</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">33</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">34</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">35</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">36</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">37</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">38</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">39</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">40</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">41</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">42</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">43</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">44</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+                <tr><td class="col-id">45</td><td class="col-name">اكتب اسم الطالب هنا</td><td class="col-note"></td></tr>
+            </tbody>
+        </table>
         
-        <div class="round">
-            <h3>دور الـ 16</h3>
-            <div class="matchup"><div class="team">فريق 1 (الصف 4أ)</div><div class="team">فريق 16 (الصف 3ب)</div></div>
-            <div class="matchup"><div class="team">فريق 8</div><div class="team">فريق 9</div></div>
-            <div class="matchup"><div class="team">فريق 5</div><div class="team">فريق 12</div></div>
-            <div class="matchup"><div class="team">فريق 4</div><div class="team">فريق 13</div></div>
-            <div class="matchup"><div class="team">فريق 3</div><div class="team">فريق 14</div></div>
-            <div class="matchup"><div class="team">فريق 6</div><div class="team">فريق 11</div></div>
-            <div class="matchup"><div class="team">فريق 7</div><div class="team">فريق 10</div></div>
-            <div class="matchup"><div class="team">فريق 2</div><div class="team">فريق 15</div></div>
-        </div>
-
-        <div class="round">
-            <h3>ربع النهائي</h3>
-            <div class="matchup"><div class="team">فائز م1</div><div class="team">فائز م2</div></div>
-            <div class="matchup"><div class="team">فائز م3</div><div class="team">فائز م4</div></div>
-            <div class="matchup"><div class="team">فائز م5</div><div class="team">فائز م6</div></div>
-            <div class="matchup"><div class="team">فائز م7</div><div class="team">فائز م8</div></div>
-        </div>
-
-        <div class="round">
-            <h3>نصف النهائي</h3>
-            <div class="matchup"><div class="team">فائز ربع 1</div><div class="team">فائز ربع 2</div></div>
-            <div class="matchup"><div class="team">فائز ربع 3</div><div class="team">فائز ربع 4</div></div>
-        </div>
-
-        <div class="round">
-            <h3>النهائي</h3>
-            <div class="matchup final-matchup" style="margin-top: 40px;">
-                <div class="team">فائز نصف 1</div>
-                <div class="team">فائز نصف 2</div>
+        <div class="signatures">
+            <div class="signature-block supervisor">
+                <span>اسم المراقب</span>
+                <span class="name-line">حسين محسن عبود</span>
+                <span>التوقيع</span>
+            </div>
+             <div class="signature-block principal">
+                <span>مدير المدرسة</span>
+                <span class="name-line">.......................................</span>
+                <span>الختم والتوقيع</span>
             </div>
         </div>
-        
+
     </div>
-    
-    <div class="championship">
-        <h2>بطل بطولة جعفر النقدي</h2>
-        <span class="trophy">🥇</span>
-        <div class="team winner" style="max-width: 300px; margin: 15px auto;">
-            (ضع اسم الفريق البطل هنا بعد انتهاء البطولة)
-        </div>
-    </div>
+</div>
 
 </body>
 </html>
