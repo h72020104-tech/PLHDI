@@ -2,65 +2,120 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>قائمة الأسماء - شعبة  - 40 اسم</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>قائمة السادس العلمي - شعبة د</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS remains the same for the luxurious look and A4 printing */
-        @page { size: A4; margin: 0; }
-        body { font-family: 'Amiri', serif; margin: 0; padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        .page-container { width: 210mm; height: 296mm; margin: auto; padding: 10mm; box-sizing: border-box; overflow: hidden; }
-        .frame { border: 4px double #0d47a1; height: 99%; padding: 5px; position: relative; }
-        .frame::after { content: ""; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 1px solid #c5a059; pointer-events: none; z-index: -1; }
-        header { text-align: center; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; margin-bottom: 5px; }
-        h1 { margin: 0; font-size: 20pt; color: #0d47a1; }
-        .sub-title { font-size: 14pt; font-weight: bold; color: #333; display: flex; justify-content: space-between; padding: 0 20px; }
-        table { width: 100%; border-collapse: collapse; font-size: 11pt; margin-top: 5px; }
-        th { background-color: #0d47a1; color: white; padding: 2px; border: 1px solid #000; }
-        td { border: 1px solid #666; padding: 0 5px; height: 20px; vertical-align: middle; }
-        .col-id { width: 30px; text-align: center; font-weight: bold; }
-        .col-name { text-align: right; }
-        .col-note { width: 100px; }
-        
-        /* تنسيق الانتساب */
-        .intisab-row { background-color: #fff9c4 !important; }
-        .intisab-row .col-name { color: #b71c1c; font-weight: bold; }
-        .badge { font-size: 9pt; float: left; background: #b71c1c; color: white; padding: 0 4px; border-radius: 3px; margin-top: 2px; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Aref Ruqaa', serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 10px;
+        }
 
-        /* منطقة التواقيع */
-        .signatures {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px; 
-            font-size: 11pt;
-            padding: 0 10px;
+        /* حاوية الورقة */
+        .paper {
+            width: 210mm; /* عرض A4 */
+            min-height: 290mm;
+            margin: 0 auto;
+            background: white;
+            padding: 15mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid #333;
         }
-        .signature-block {
-            width: 45%;
+
+        header {
             text-align: center;
+            border-bottom: 2px double #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
         }
-        .signature-block span {
-            display: block;
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #000;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 5px;
         }
-        .signature-block .name-line {
-            font-weight: bold;
-            margin: 5px auto 15px auto; 
-            padding-bottom: 2px;
-            border-bottom: 1px dashed #000; 
-            width: 80%;
+
+        th, td {
+            border: 1px solid #000;
+            padding: 4px 10px; /* تقليل المسافات للحفاظ على الصفحة الواحدة */
+            text-align: center;
+            font-size: 19px; /* حجم خط مثالي للقراءة */
         }
 
-        @media print { .page-container { width: 100%; height: 100%; padding: 5mm; } }
+        th {
+            background-color: #f0f0f0 !important;
+            font-size: 20px;
+        }
+
+        /* تمييز طلاب الانتساب بخط مائل أو لون مختلف قليلاً */
+        .intisab-row {
+            background-color: #fafafa !important;
+        }
+        
+        .intisab-mark {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        /* إعدادات الطباعة */
+        @media print {
+            body { background: none; padding: 0; }
+            .paper { box-shadow: none; border: none; width: 100%; margin: 0; padding: 10mm; }
+            .print-btn { display: none; }
+            table { width: 100%; }
+            th { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+            .intisab-row { background-color: #f9f9f9 !important; -webkit-print-color-adjust: exact; }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
-<div class="page-container">
-    <div class="frame">
+    <button class="print-btn" onclick="window.print()">اضغط للطباعة الفورية</button>
+
+    <div class="paper">
         <header>
-            <h1>قائمة أسماء الطلبة</h1>
-            <div class="sub-title">
-                <span>الشعبة: (ج )</span>
+            <h1>قائمة أسماء طلاب السادس العلمي - شعبة (د)</h1>
+            <div class="info">
+                <span>العدد الكلي: 41</span>
+                <span>الانتساب: 10</span>
                 <span>العام الدراسي: 2025 - 2026</span>
             </div>
         </header>
@@ -68,71 +123,59 @@
         <table>
             <thead>
                 <tr>
-                    <th class="col-id">ت</th>
-                    <th class="col-name">الاسم الرباعي واللقب</th>
-                    <th class="col-note">الملاحظات</th>
+                    <th style="width: 10%;">ت</th>
+                    <th style="width: 65%;">اسم الطالب الثلاثي</th>
+                    <th style="width: 25%;">الملاحظات</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="intisab-row"><td class="col-id">1</td><td class="col-name">ابا الحسن علي هولي<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
-                <tr class="intisab-row"><td class="col-id">2</td><td class="col-name">امين حسن نعمه<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
-                <tr class="intisab-row"><td class="col-id">3</td><td class="col-name">محمد رمضان شيال<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
-                <tr class="intisab-row"><td class="col-id">4</td><td class="col-name">مصطفى علي عبد الحسن<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
-                <tr class="intisab-row"><td class="col-id">5</td><td class="col-name">محمد كامل حسن<span class="badge">انتساب</span></td><td class="col-note"></td></tr>
+                <tr class="intisab-row"><td>1</td><td>ابو لفضل عباس هولي</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>2</td><td>احمد شاكر حسين</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>3</td><td>حسين علاء محسن</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>4</td><td>عباس قاسم محمد</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>5</td><td>علي خالد شعل</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>6</td><td>مومل موسى زبون</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>7</td><td>محمد مصطفى عبد الزهره</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>8</td><td>مصطفى احمد خماس</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>9</td><td>محمد سعدون مطشر</td><td class="intisab-mark">انتساب</td></tr>
+                <tr class="intisab-row"><td>10</td><td>علي مصطفى عبد الواحد</td><td class="intisab-mark">انتساب</td></tr>
 
-                <tr><td class="col-id">6</td><td class="col-name">ابا الفضل جمعه علاوي</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">7</td><td class="col-name">ابراهيم زياد خلف</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">8</td><td class="col-name">حسن عدنان عبد الحسين</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">9</td><td class="col-name">حسن كريم</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">10</td><td class="col-name">حسنين عباس محمد</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">11</td><td class="col-name">حسين محمد شنين</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">12</td><td class="col-name">حيدر عقيل احمد</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">13</td><td class="col-name">حيدر محمد عباس</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">14</td><td class="col-name">سجاد علي جاسم</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">15</td><td class="col-name">سجاد مناف حسن</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">16</td><td class="col-name">عباس كاظم عنيد</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">17</td><td class="col-name">علي حسام خضير</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">18</td><td class="col-name">علي حسين حميد</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">19</td><td class="col-name">علي حسين حمود</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">20</td><td class="col-name">علي عوده علاوي</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">21</td><td class="col-name">علي قيصر حميد</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">22</td><td class="col-name">علي ماجد رسن</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">23</td><td class="col-name">علي محمد سعدون</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">24</td><td class="col-name">علي وسام خلف</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">25</td><td class="col-name">كاظم علي عبد الحسن</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">26</td><td class="col-name">كاظم كريم حسين</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">27</td><td class="col-name">مومل عباس غازي</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">28</td><td class="col-name">محمد جاسم حلف</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">29</td><td class="col-name">محمد حسن هادي</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">30</td><td class="col-name">محمد ماجد محسن</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">31</td><td class="col-name">مرتجى عباس عيدان</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">32</td><td class="col-name">مرتضى علي حسن</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">33</td><td class="col-name">مصطفى محسن جبر</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">34</td><td class="col-name">مسلم عقيل عبد الزهره</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">35</td><td class="col-name">مقتدى علي رويس</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">36</td><td class="col-name">مقتدى كريم زامل</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">37</td><td class="col-name">مهدي كاظم علي</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">38</td><td class="col-name">مقتدى نجم فاخر</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">39</td><td class="col-name">حسين علي سرحان</td><td class="col-note"></td></tr>
-                <tr><td class="col-id">40</td><td class="col-name">حسين محسن عبود</td><td class="col-note"></td></tr>
+                <tr><td>11</td><td>احمد حسام سرحان</td><td>-</td></tr>
+                <tr><td>12</td><td>حيدر جبار شيحان</td><td>-</td></tr>
+                <tr><td>13</td><td>حيدر عباس غالي</td><td>-</td></tr>
+                <tr><td>14</td><td>صادق جعفر شاطي</td><td>-</td></tr>
+                <tr><td>15</td><td>صادق حيدر عباس</td><td>-</td></tr>
+                <tr><td>16</td><td>عباس حسين رشك</td><td>-</td></tr>
+                <tr><td>17</td><td>عباس محمد حسين</td><td>-</td></tr>
+                <tr><td>18</td><td>كاظم علي جوده</td><td>-</td></tr>
+                <tr><td>19</td><td>احمد حسين موله</td><td>-</td></tr>
+                <tr><td>20</td><td>غزوان حسين حميد</td><td>-</td></tr>
+                <tr><td>21</td><td>قاسم عباس خماس</td><td>-</td></tr>
+                <tr><td>22</td><td>قاسم ياسر عباس</td><td>-</td></tr>
+                <tr><td>23</td><td>كرار هاني نوري</td><td>-</td></tr>
+                <tr><td>24</td><td>محمد جاسم حسين</td><td>-</td></tr>
+                <tr><td>25</td><td>محمد صبيح نعيمه</td><td>-</td></tr>
+                <tr><td>26</td><td>محمد عبد الرحمن سعد</td><td>-</td></tr>
+                <tr><td>27</td><td>مصطفى جاسم جبر</td><td>-</td></tr>
+                <tr><td>28</td><td>مصطفى فاضل شويع</td><td>-</td></tr>
+                <tr><td>29</td><td>مقتدى باسم سعيد</td><td>-</td></tr>
+                <tr><td>30</td><td>مقتدى سامي نعمه</td><td>-</td></tr>
+                <tr><td>31</td><td>مقتدى هاشم حميد</td><td>-</td></tr>
+                <tr><td>32</td><td>منتظر ضياء عزيز</td><td>-</td></tr>
+                <tr><td>33</td><td>منتظر محمد ندامه</td><td>-</td></tr>
+                <tr><td>34</td><td>موسى محمد خشان</td><td>-</td></tr>
+                <tr><td>35</td><td>ميثم ايهاب حسين</td><td>-</td></tr>
+                <tr><td>36</td><td>ياسر عقيل كريم</td><td>-</td></tr>
+                <tr><td>37</td><td>ياسر عمار صبيح</td><td>-</td></tr>
+                <tr><td>38</td><td>علاء حسين صباح</td><td>-</td></tr>
+                <tr><td>39</td><td>عباس محمد عبد الساده</td><td>-</td></tr>
+                <tr><td>40</td><td>سجاد احمد عبد الحسين</td><td>-</td></tr>
+                <tr><td>41</td><td>مومل فارس بدر</td><td>-</td></tr>
             </tbody>
         </table>
-        
-        <div class="signatures">
-            <div class="signature-block supervisor">
-                <span>اسم المراقب</span>
-                <span class="name-line">حسين محسن عبود</span>
-                <span>التوقيع</span>
-            </div>
-             <div class="signature-block principal">
-                <span>مساعد المراقب</span>
-                <span class="name-line">.......................................</span>
-                <span></span>
-            </div>
-        </div>
 
+        <p style="text-align: left; margin-top: 20px; font-weight: bold; margin-left: 50px;"> مراقب الصف الزعيم /ياسر عمار  / </p>
     </div>
-</div>
 
 </body>
 </html>
