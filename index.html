@@ -3,78 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام نتائج الطلاب</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>منصة النتائج الحديثة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-color: #2563eb;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-color: #1f2937;
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
+            --text-light: #64748b;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
         body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            background-color: var(--card-bg);
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-card {
+            background: var(--glass-bg);
             width: 100%;
-            max-width: 500px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            max-width: 480px;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-area {
             text-align: center;
+            margin-bottom: 30px;
         }
-        .header { background-color: var(--primary-color); padding: 25px; color: white; }
-        .header h1 { font-size: 1.5rem; margin-bottom: 5px; }
-        .search-box { padding: 30px; }
-        .input-group { margin-bottom: 20px; text-align: right; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-color); }
+
+        .logo-icon {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .logo-area h1 {
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+
+        .logo-area p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+
         input[type="text"] {
-            width: 100%; padding: 12px 15px; border: 2px solid #e5e7eb;
-            border-radius: 8px; font-family: 'Tajawal', sans-serif; font-size: 1rem;
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            background: #f8fafc;
+            transition: all 0.3s ease;
         }
-        input[type="text"]:focus { outline: none; border-color: var(--primary-color); }
-        button {
-            width: 100%; padding: 12px; background-color: var(--primary-color);
-            color: white; border: none; border-radius: 8px; font-size: 1rem;
-            font-weight: bold; cursor: pointer; font-family: 'Tajawal', sans-serif;
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
-        button:hover { background-color: #1d4ed8; }
-        #resultArea { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; }
-        .success { background-color: #d1fae5; color: #065f46; border: 1px solid #34d399; }
-        .fail { background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-        .not-found { background-color: #f3f4f6; color: #4b5563; border: 1px solid #d1d5db; }
-        .result-details span { display: block; margin: 5px 0; font-size: 1.1rem; }
+
+        .search-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-btn:active {
+            transform: scale(0.98);
+        }
+
+        .search-btn:hover {
+            box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Loading Spinner */
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffffff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Result Cards */
+        #resultContainer {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-card {
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-card {
+            background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+
+        .fail-card {
+            background: linear-gradient(145deg, #fef2f2, #fee2e2);
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        .not-found-card {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .success-card .score-circle { color: #16a34a; border: 4px solid #bbf7d0; }
+        .fail-card .score-circle { color: #dc2626; border: 4px solid #fecaca; }
+
+        .details h2 { font-size: 1.4rem; margin-bottom: 5px; }
+        .details p { font-size: 1.1rem; opacity: 0.8; }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .badge-fail { background: #fee2e2; color: #b91c1c; }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>نتائج الامتحانات النهائية</h1>
-            <p>أدخل الاسم الثلاثي (مثال: محمد أحمد علي)</p>
+    <div class="main-card">
+        <div class="logo-area">
+            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <h1>نتائج الطلاب</h1>
+            <p>السنة الدراسية 2024 - 2025</p>
         </div>
 
-        <div class="search-box">
-            <div class="input-group">
-                <label for="studentName">الاسم الثلاثي للطالب:</label>
-                <input type="text" id="studentName" placeholder="اكتب الاسم هنا...">
-            </div>
-            <button onclick="getResult()">بحث عن النتيجة</button>
-            <div id="resultArea"></div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="studentName" placeholder="اكتب الاسم الثلاثي هنا...">
         </div>
+
+        <button class="search-btn" onclick="searchResult()">
+            <span id="btnText">عرض النتيجة</span>
+            <div class="loader" id="loader"></div>
+        </button>
+
+        <div id="resultContainer"></div>
     </div>
 
     <script>
-        // --- قاعدة بيانات 100 اسم ---
-        const studentsData = [
+        // --- قاعدة البيانات (100 اسم) ---
+        const students = [
             { name: "محمد أحمد علي", score: 95, status: "ناجح" },
             { name: "علي حسين كاظم", score: 88, status: "ناجح" },
             { name: "سارة محمود حسن", score: 92, status: "ناجحة" },
@@ -177,57 +349,86 @@
             { name: "كوثر محمد رضا", score: 90, status: "ناجحة" }
         ];
 
-        function getResult() {
-            let inputName = document.getElementById("studentName").value.trim();
-            let resultDiv = document.getElementById("resultArea");
+        function searchResult() {
+            const input = document.getElementById("studentName");
+            const btnText = document.getElementById("btnText");
+            const loader = document.getElementById("loader");
+            const container = document.getElementById("resultContainer");
             
-            resultDiv.style.display = "none";
-            resultDiv.className = "";
-            resultDiv.innerHTML = "";
+            const name = input.value.trim();
 
-            if (inputName === "") {
-                alert("يرجى إدخال الاسم أولاً!");
+            if (!name) {
+                input.focus();
+                input.style.borderColor = "#ef4444";
+                setTimeout(() => input.style.borderColor = "#e2e8f0", 2000);
                 return;
             }
 
-            // البحث عن الاسم
-            let student = studentsData.find(s => s.name === inputName);
+            // تفعيل حالة التحميل (Loading)
+            btnText.style.display = "none";
+            loader.style.display = "block";
+            container.style.display = "none";
 
-            resultDiv.style.display = "block";
+            // محاكاة تأخير الشبكة (1 ثانية) لجمالية العرض
+            setTimeout(() => {
+                const student = students.find(s => s.name === name);
+                
+                // إظهار النتيجة
+                btnText.style.display = "block";
+                loader.style.display = "none";
+                container.style.display = "block";
 
-            if (student) {
-                if (student.score >= 50) {
-                    resultDiv.classList.add("success");
-                    resultDiv.innerHTML = `
-                        <div class="result-details">
-                            <h3>مبروك النجاح! 🎉</h3>
-                            <span><strong>الاسم:</strong> ${student.name}</span>
-                            <span><strong>الدرجة:</strong> ${student.score}</span>
-                            <span><strong>الحالة:</strong> ${student.status}</span>
-                        </div>
-                    `;
+                if (student) {
+                    if (student.score >= 50) {
+                        // كود النجاح
+                        container.innerHTML = `
+                            <div class="result-card success-card">
+                                <div class="score-circle">
+                                    ${student.score}
+                                </div>
+                                <div class="details">
+                                    <h2>${student.name}</h2>
+                                    <p>مبارك النجاح الباهر! 🎓</p>
+                                    <span class="badge badge-success">${student.status}</span>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        // كود الرسوب
+                        container.innerHTML = `
+                            <div class="result-card fail-card">
+                                <div class="score-circle">
+                                    ${student.score}
+                                </div>
+                                <div class="details">
+                                    <h2>${student.name}</h2>
+                                    <p>حظاً أوفر في المرة القادمة 🙏</p>
+                                    <span class="badge badge-fail">${student.status}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
                 } else {
-                    resultDiv.classList.add("fail");
-                    resultDiv.innerHTML = `
-                        <div class="result-details">
-                            <h3>حظاً أوفر 😔</h3>
-                            <span><strong>الاسم:</strong> ${student.name}</span>
-                            <span><strong>الدرجة:</strong> ${student.score}</span>
-                            <span><strong>الحالة:</strong> ${student.status}</span>
+                    // الاسم غير موجود
+                    container.innerHTML = `
+                        <div class="result-card not-found-card">
+                            <i class="fa-solid fa-circle-question" style="font-size: 3rem; margin-bottom: 10px; color: #94a3b8;"></i>
+                            <div class="details">
+                                <h2>الاسم غير مسجل</h2>
+                                <p>لم يتم العثور على الطالب "${name}"</p>
+                            </div>
                         </div>
                     `;
                 }
-            } else {
-                resultDiv.classList.add("not-found");
-                resultDiv.innerHTML = `
-                    <div class="result-details">
-                        <h3>غير موجود ⚠️</h3>
-                        <span>الاسم "${inputName}" غير موجود في القائمة.</span>
-                        <span style="font-size: 0.9rem">تأكد من كتابة الاسم الثلاثي والهمزات بشكل صحيح.</span>
-                    </div>
-                `;
-            }
+            }, 800); // زمن الانتظار بالميلي ثانية
         }
+
+        // تشغيل البحث عند ضغط زر Enter
+        document.getElementById("studentName").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                searchResult();
+            }
+        });
     </script>
 </body>
 </html>
